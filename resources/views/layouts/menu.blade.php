@@ -60,11 +60,37 @@
               <span class="menu-title">Citas</span>
             </a>
           </li>
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a class="nav-link" href="{{ route('tratamientos') }}">
               <i class="menu-icon mdi mdi-table"></i>
               <span class="menu-title">Tratamientos</span>
             </a>
+          </li> --}}
+          <li class="nav-item">
+            <a class="nav-link" href="">
+              <i class="menu-icon mdi mdi-table"></i>
+              <span class="menu-title">Caja</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <i class="menu-icon mdi mdi-content-copy"></i>
+              <span class="menu-title">Configuración</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Usuarios</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Doctores</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">General</a>
+                </li>
+              </ul>
+            </div>
           </li>
         
         </ul>

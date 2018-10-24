@@ -1,11 +1,11 @@
 @extends('layouts.layout')
 
-@section('class-back', 'd-none') @section('link-back',url('/#'))
-@section('class-new', '') @section('link-new',url('/#'))
+@section('class-back', 'd-none') @section('link-back', url('#'))
+@section('class-new', '') @section('link-new',url('pacientes/create'))
 @section('titulo', 'Pacientes')
 
 @section('content')
-  <div class="col-12  grid-margi/n stretch-card">
+  <div class="col-12  grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
 
@@ -56,7 +56,7 @@
                 <td>Dirección</td>
                 <td>
                   <div class="btn-group" role="group" aria-label="Basic example">
-                    <a class="btn btn-icons btn-inverse-secondary"><i class="fa fa-eye"></i></a>
+                    <a href="{{ route('paciente.ficha.basico',3) }}" class="btn btn-icons btn-inverse-secondary"><i class="fa fa-eye"></i></a>
                     <a class="btn btn-icons btn-inverse-secondary"><i class="fa fa-file"></i></a>
                     <a class="btn btn-icons btn-inverse-secondary"><i class="fa fa-at"></i></a>
                     <a class="btn btn-icons btn-inverse-secondary"><i class="fa fa-times"></i></a>

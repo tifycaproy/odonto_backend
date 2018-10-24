@@ -5,12 +5,14 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Koppmann</title>
+  <title>Sistema Odontológico</title>
   <!-- plugins:css -->
  <link rel="stylesheet" href="{{ asset('vendors/iconfonts/mdi/css/materialdesignicons.min.css') }}">
+ <link rel="stylesheet" href="{{ asset('js/alertifyjs/css/alertify.min.css') }}">
  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
  {{--   <link rel="stylesheet" href="{{ asset('vendors/css/vendor.bundle.base.css') }}">
   <link rel="stylesheet" href="{{ asset('vendors/css/vendor.bundle.addons.css') }}"> --}}
+
   <!-- endinject -->
   <!-- plugin css for this page -->
   <!-- End plugin css for this page -->
@@ -84,6 +86,10 @@
   <!-- Custom js for this page-->
   <script src="{{ asset('js/dashboard.js') }}"></script>
   <!-- End custom js for this page-->
+
+  <script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>
+  <script>alertify.success("se logor");</script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   @stack('scripts')
 </body>
 

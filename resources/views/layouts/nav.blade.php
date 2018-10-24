@@ -1,11 +1,11 @@
 <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
         <a class="navbar-brand brand-logo p-2" href="index.html">
-          <img width="" src="{{ asset('images/logo1.png') }}" alt="logo" />
+          <img width="" src="{{ asset('images/logo.jpg') }}" alt="logo" />
         </a>
-        <a class="navbar-brand brand-logo-mini" href="index.html">
+        {{-- <a class="navbar-brand brand-logo-mini" href="index.html">
           <img src="{{ asset('images/logo_mini.png') }}" alt="logo" />
-        </a>
+        </a> --}}
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center">
         <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
