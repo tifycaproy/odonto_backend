@@ -57,5 +57,4 @@ class HomeController extends Controller
         return $pdf->stream();
     }
 
-
 }
