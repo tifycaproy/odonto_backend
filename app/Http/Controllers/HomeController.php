@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $request->user()->authorizeRoles(['user', 'admin']);
+       $request->user()->authorizeRoles(['user', 'admin', 'Administrador']);
         return view('inicio');
     }
 
@@ -56,6 +56,5 @@ class HomeController extends Controller
         //$pdf->render();
         return $pdf->stream();
     }
-
 
 }

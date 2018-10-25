@@ -23,6 +23,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 // PACIENTES
 
 Route::get('pacientes', 'Pacientes\pacientesController@index')->name('pacientes');
+Route::post('pacientes','Pacientes\pacientesController@store');
 
 Route::get('pacientes/create', 'Pacientes\pacientesController@create')->name('pacientes/create');
 
