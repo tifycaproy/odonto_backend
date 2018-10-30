@@ -12,9 +12,9 @@
                     <small class="designation text-muted">
                        @if(Auth::user()->hasRole('admin'))
                         Administrator
-                    @else
-                        usuario
-                    @endif
+                      @else
+                          usuario
+                      @endif
                     </small>
                     <span class="status-indicator online"></span>
                   </div>

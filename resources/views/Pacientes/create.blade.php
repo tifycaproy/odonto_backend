@@ -153,10 +153,10 @@
             </div>
             </form>
         </div>
-        <div class="alert alert-success" id="respuesta">
+       {{-- <div class="alert alert-success" id="respuesta">
             
         </div>
-        
+        --}}
         <div class="card-footer text-center">
             <button id="btn_crear_paciente" class="btn btn-success btn-lg">Crear Paciente</button>   
             <input type="submit" class="btn btn-primary btn-lg" name="" value="Guardar">

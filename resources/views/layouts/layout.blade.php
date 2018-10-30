@@ -23,7 +23,8 @@
 </head>
 
 <body>
-  <div class="container-scroller">
+
+  <div id="app" class="container-scroller">
     <!-- partial:partials/_navbar.html -->
     @include('layouts.nav')
     <!-- partial -->
@@ -86,9 +87,9 @@
   <!-- Custom js for this page-->
   <script src="{{ asset('js/dashboard.js') }}"></script>
   <!-- End custom js for this page-->
-
+    <script src="{{ asset('js/app.js') }}"></script>
   <script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>
-  <script>alertify.success("se logor");</script>
+   @include('alertify::alertify') 
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   @stack('scripts')
 </body>

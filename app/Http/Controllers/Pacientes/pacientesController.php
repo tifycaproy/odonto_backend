@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Validator;
 //use Illuminate\Session\SessionManager;
 use App\Paciente;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+
+
 class pacientesController extends Controller {
 
     public function index() {
@@ -15,6 +20,7 @@ class pacientesController extends Controller {
     }
 
     public function create() {
+     // alertify()->success("hola")->delay(6000)->position('bottom right');
         return view('Pacientes.create');
     }
 
@@ -63,8 +69,8 @@ class pacientesController extends Controller {
             
         }
         #$retorna["message"]
-        #alertify()->success("hola")->delay(6000)->position('bottom right');
-        return $retorna;
+       // alertify()->success("veremo el mensaje?")->delay(6000)->position('bottom right');
+         return $retorna;
         
 //        return "guardado";
     }
