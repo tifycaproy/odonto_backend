@@ -9,6 +9,6 @@ class Paciente extends Model
     //
     public $timestamps = false; 
     protected $table = 'pacientes';
-    protected $fillable = ['id','nombres','apellidos'];
+    protected $fillable = ['id','nombres','apellidos',"direccion"];
     
 }
