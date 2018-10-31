@@ -20,7 +20,7 @@ class pacientesController extends Controller {
     }
 
     public function create() {
-     // alertify()->success("hola")->delay(6000)->position('bottom right');
+        //alertify()->success("hola")->delay(6000)->position('bottom right');
         return view('Pacientes.create');
     }
 
@@ -48,31 +48,28 @@ class pacientesController extends Controller {
         
         $data = $request->all();
 
-        $rules = array('nombres' => 'required',
-            'apellidos' => 'required');
-        $messages = array('nombre.required' => 'Nombre del paciente es requerido',
-            'apellidos.required' => 'Apellido del paciente es requerido');
+        $rules = array( 'nombres' => 'required',
+                        'apellidos' => 'required');
+        $messages = array('nombres.required' => 'Nombre del paciente es requerido',
+                          'apellidos.required' => 'Apellido del paciente es requerido');
 
         $validator = Validator::make($data, $rules, $messages);
 
         if ($validator->fails()) {
-
             $errors = $validator->errors();
-            $retorna = response()->json(['success' => false, 'message' => json_decode($errors)], 400);
+            $retorna = response()->json(['success' => false, 'message' => json_decode($errors)], 200);
         } elseif ($validator->passes()) {
 
             $paciente = new Paciente;
-            $paciente->nombres = $request->nombres;
-            $paciente->apellidos = $request->apellidos;
+            foreach ($paciente->fillable as $id => $campo){
+                $paciente->$campo = $request->$campo;
+            }
             $paciente->save();
             $retorna = response()->json(['success' => true, 'message' => 'Creado el Paciente', 'paciente' => json_decode($paciente)], 200);
-            
+
         }
-        #$retorna["message"]
-       // alertify()->success("veremo el mensaje?")->delay(6000)->position('bottom right');
+
          return $retorna;
-        
-//        return "guardado";
     }
 
 }

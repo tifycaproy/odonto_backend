@@ -158,8 +158,10 @@
         </div>
         --}}
         <div class="card-footer text-center">
-            <button id="btn_crear_paciente" class="btn btn-success btn-lg">Crear Paciente</button>   
+            <button id="btn_crear_paciente" class="btn btn-success btn-lg">Crear Paciente</button>
+            {{--
             <input type="submit" class="btn btn-primary btn-lg" name="" value="Guardar">
+             --}}
         </div>
     </div>
 

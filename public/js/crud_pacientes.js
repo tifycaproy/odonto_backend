@@ -5,24 +5,25 @@
  */
 $(document).ready(function () {
 
-   // $("#respuesta").html("").hide();
-   //alertify.success("ete es el mensaje de defecto");
-
     $('#btn_crear_paciente').on('click', function (e) {
-        // var datos_paciente = ;
-
+        var boton = $('#btn_crear_paciente');
+        var text_boton = boton.html();
+        boton.html('<i class="fa fa-spinner fa-spin"></i> Espere').prop("disabled", true);
         axios.post('/pacientes/', $("#frm_pacientes").serialize())
                 .then(function (response) {
-                  //  console.log(response.data);
+                    console.log(response.data);
                     if (response.data.success) {
                         alertify.success(response.data.message);
+                    }else{
+                       $.each(response.data.message,function(idx,mes){
+                         alertify.error(mes[0]);
+                       });
                     }
-
                 })
-                .catch(function (error) {
-                    console.log(error);
-                }).then(function (response) {
-                    alertify.success("Esperando Respuesta");
+                .catch(function (er) {
+                    alertify.error('Error inesperado: '+er);
+                }).then(function(){
+                  boton.html(text_boton).prop("disabled", false);
                 });
 
     });
