@@ -16,8 +16,11 @@ window.Vue = require('vue');
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
-//Vue.component('tipos-sangre', require('./components/TiposSangre.vue'));
+Vue.component('datos-basicos-cliente', require('./components/DatosBasicosCliente.vue'));
+Vue.component('tipos-sangre', require('./components/TiposSangre.vue'));
+Vue.component('estados-cilives', require('./components/EstadosCiviles.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+
 });

@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 $(document).ready(function () {
-
+/*
+ * Esto lo ejecuta el componente de VUE.JS
     $('#btn_crear_paciente').on('click', function (e) {
         var boton = $('#btn_crear_paciente');
         var text_boton = boton.html();
@@ -25,7 +26,7 @@ $(document).ready(function () {
                 }).then(function(){
                   boton.html(text_boton).prop("disabled", false);
                 });
-
+*/
     });
 
 
