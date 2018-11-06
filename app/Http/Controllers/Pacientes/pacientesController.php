@@ -73,22 +73,39 @@ class pacientesController extends Controller {
         return response()->json(json_decode($paciente));
         //return "esta llegando el id = ".$request->id_paciente;
     }
-
-    public function store(Request $request) {
-
-        $data = $request->all();
-
-        $rules = array('nombres' => 'required',
-            'apellidos' => 'required');
+    
+    private function validador($data){
+        $retono="";
+        $rules = array(
+            'nombres' => 'required',
+            'apellidos' => 'required',
+            'id_pais' => 'required',
+            'id_tipo_sangre' => 'required',
+            'id_estado_civil' => 'required',
+            'id_sexo' => 'required',
+            'id_ocupacion' => 'required',
+            'id_referidor' => 'required'
+            );
         $messages = array('nombres.required' => 'Nombre del paciente es requerido',
             'apellidos.required' => 'Apellido del paciente es requerido');
 
         $validator = Validator::make($data, $rules, $messages);
-
+        
         if ($validator->fails()) {
-            $errors = $validator->errors();
-            $retorna = response()->json(['success' => false, 'message' => json_decode($errors)], 200);
+            $retono = $validator->errors();
         } elseif ($validator->passes()) {
+            $retono="valido";
+        }
+                
+        return $retono;
+    }
+
+    public function store(Request $request) {
+
+       $valido = $this->validador($request->all());
+        if ($valido!="valido") {
+            $retorna = response()->json(['success' => false, 'message' => json_decode($valido)], 200);
+        } else {
 
             $paciente = Paciente::create($request->all());
             /*
@@ -106,20 +123,10 @@ class pacientesController extends Controller {
 
     public function update(Request $request) {
 
-        $data = $request->all();
-
-        $rules = array('nombres' => 'required',
-            'apellidos' => 'required');
-        $messages = array('nombres.required' => 'Nombre del paciente es requerido',
-            'apellidos.required' => 'Apellido del paciente es requerido');
-
-        $validator = Validator::make($data, $rules, $messages);
-
-        if ($validator->fails()) {
-            $errors = $validator->errors();
-            $retorna = response()->json(['success' => false, 'message' => json_decode($errors)], 200);
-        } elseif ($validator->passes()) {
-
+        $valido = $this->validador($request->all());
+        if ($valido!="valido") {
+            $retorna = response()->json(['success' => false, 'message' => json_decode($valido)], 200);
+        } else {
             $paciente = Paciente::find($request->id_paciente)->update($request->all());
             $retorna = response()->json(['success' => true, 'message' => 'Se actualizo el Paciente', 'paciente' => json_decode($paciente)], 200);
         }
