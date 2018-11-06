@@ -216,11 +216,12 @@
                         //variables de majeno del DOM
                         this.boton = $('#btn_crear_paciente');
                         this.text_boton = this.boton.html();
+                        $("#btn_historia_medica").prop("disabled", true);
 
                         if (this.accion == "actualizar") {
                             axios.get('/pacientes/get/' + this.id_paciente)
                                     .then((response) => {
-                                        
+
                                         this.identificacion = response.data.identificacion;
                                         this.nombres = response.data.nombres;
                                         this.apellidos = response.data.apellidos;
@@ -243,14 +244,14 @@
                                         this.id_ocupacion = response.data.id_ocupacion;
                                         this.id_referidor = response.data.id_referidor;
                                         this.id_parentesco = response.data.id_parentesco;
-                                        this.id_pais = response.data.id_pais;                                      
+                                        this.id_pais = response.data.id_pais;
 
                                     });
 
-                            }
                         }
-                        ,
-                                get_tipos_sangres() {
+                    }
+                    ,
+                    get_tipos_sangres() {
                         axios.get('/configuracionsistema/get_tipos_sangres')
                                 .then((response) => {
                                     this.tipos_sangres = response.data;
@@ -318,6 +319,8 @@
                                     if (response.data.success) {
                                         console.log(response.data.paciente);
                                         this.id_paciente = this.paciente = response.data.paciente.id_paciente;
+                                        $("#id_paciente_hm").val(this.id_paciente);
+                                        $("#btn_historia_medica").prop("disabled",false);
                                         this.accion = "actualizar";
                                         alertify.success(response.data.message);
                                     } else {

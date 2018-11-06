@@ -4,11 +4,11 @@ namespace App\Http\Controllers\ConfiguracionSistema;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\ConfiguracionSistema\estados_civiles;
+use App\ConfiguracionSistema\enfermedades;
 
-class estados_civilesController extends Controller
+class enfermedadesController extends Controller
 {
     public function get_all() {
-       return json_decode(estados_civiles::All());
+       return json_decode(enfermedades::All());
     }
 }

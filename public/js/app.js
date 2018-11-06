@@ -375,39 +375,12 @@ module.exports = {
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(18);
 
 /***/ }),
-/* 3 */
+/* 2 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -513,6 +486,33 @@ module.exports = function normalizeComponent (
     options: options
   }
 }
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
 
 
 /***/ }),
@@ -1078,7 +1078,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(12);
-module.exports = __webpack_require__(51);
+module.exports = __webpack_require__(54);
 
 
 /***/ }),
@@ -1102,10 +1102,13 @@ window.Vue = __webpack_require__(36);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', __webpack_require__(39));
-Vue.component('datos-basicos-cliente', __webpack_require__(42));
-Vue.component('tipos-sangre', __webpack_require__(45));
-Vue.component('estados-cilives', __webpack_require__(48));
+//Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('datos-basicos-cliente', __webpack_require__(39));
+Vue.component('enfermedad', __webpack_require__(42));
+Vue.component('historia-clinica-medica', __webpack_require__(45));
+Vue.component('tipos-sangre', __webpack_require__(48));
+
+Vue.component('estados-cilives', __webpack_require__(51));
 
 var app = new Vue({
   el: '#app'
@@ -1137,7 +1140,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(2);
+window.axios = __webpack_require__(1);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -18285,7 +18288,7 @@ if (token) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(15)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(15)(module)))
 
 /***/ }),
 /* 15 */
@@ -42917,7 +42920,7 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(37).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(37).setImmediate))
 
 /***/ }),
 /* 37 */
@@ -42987,7 +42990,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (typeof global !== "undefined" && global.clearImmediate) ||
                          (this && this.clearImmediate);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 38 */
@@ -43180,137 +43183,18 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(6)))
 
 /***/ }),
 /* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(2)
 /* script */
 var __vue_script__ = __webpack_require__(40)
 /* template */
 var __vue_template__ = __webpack_require__(41)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/ExampleComponent.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7168fb6a", Component.options)
-  } else {
-    hotAPI.reload("data-v-7168fb6a", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 40 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        console.log('Component mounted.');
-    }
-});
-
-/***/ }),
-/* 41 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
-          _c("div", { staticClass: "panel panel-default" }, [
-            _c("div", { staticClass: "panel-heading" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "panel-body" }, [
-              _vm._v(
-                "\n                    I'm an example component!\n                "
-              )
-            ])
-          ])
-        ])
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-7168fb6a", module.exports)
-  }
-}
-
-/***/ }),
-/* 42 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(3)
-/* script */
-var __vue_script__ = __webpack_require__(43)
-/* template */
-var __vue_template__ = __webpack_require__(44)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -43349,12 +43233,12 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 43 */
+/* 40 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 //
 //
@@ -43577,6 +43461,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             //variables de majeno del DOM
             this.boton = $('#btn_crear_paciente');
             this.text_boton = this.boton.html();
+            $("#btn_historia_medica").prop("disabled", true);
 
             if (this.accion == "actualizar") {
                 __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/pacientes/get/' + this.id_paciente).then(function (response) {
@@ -43683,6 +43568,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 if (response.data.success) {
                     console.log(response.data.paciente);
                     _this10.id_paciente = _this10.paciente = response.data.paciente.id_paciente;
+                    $("#id_paciente_hm").val(_this10.id_paciente);
+                    $("#btn_historia_medica").prop("disabled", false);
                     _this10.accion = "actualizar";
                     alertify.success(response.data.message);
                 } else {
@@ -43727,7 +43614,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 44 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -44700,15 +44587,1536 @@ if (false) {
 }
 
 /***/ }),
+/* 42 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(43)
+/* template */
+var __vue_template__ = __webpack_require__(44)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Enfermedades.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-dfc3daec", Component.options)
+  } else {
+    hotAPI.reload("data-v-dfc3daec", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 43 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['des_enfermedad', 'valor']
+});
+
+/***/ }),
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "form-group col-12 col-sm-6 col-md-4" }, [
+    _c("div", { staticClass: "form-check ml-md-4" }, [
+      _c("input", {
+        staticClass: "form-check-input",
+        attrs: { type: "checkbox", name: "id_enfermedad[]" },
+        domProps: { value: _vm.valor }
+      }),
+      _vm._v(" "),
+      _c("label", { staticClass: "mt-1", attrs: { for: "" } }, [
+        _vm._v("\n            " + _vm._s(_vm.des_enfermedad) + "\n        ")
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-dfc3daec", module.exports)
+  }
+}
+
+/***/ }),
 /* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(2)
 /* script */
 var __vue_script__ = __webpack_require__(46)
 /* template */
 var __vue_template__ = __webpack_require__(47)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/HistoriaClinicaMedica.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-03267890", Component.options)
+  } else {
+    hotAPI.reload("data-v-03267890", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 46 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['accion', 'paciente', 'historia_medica'],
+    data: function data() {
+        return {
+
+            id_historia_medica: "",
+            id_paciente: "",
+            ultima_consulta_medica: "",
+            motivo_medica: "",
+            ultima_consulta_odontologica: "",
+            motivo_odontologica: "",
+            bajo_tratamiento: "",
+            cual_tratamiento: "",
+            toma_medicina: "",
+            nombre_medicina: "",
+            hospitalizado: "",
+            causa_hospitalizacion: "",
+            embarazada: "",
+            problema_anestesico_dental: "",
+            alergia_m: "",
+            alergia_medicamentos: "",
+            alergia_a: "",
+            alergia_alimentos: "",
+
+            //campode dependientes de otras tablas
+            //dependencias normalmente son select, radios, checkbox
+            enfermedades_t: [],
+            enfermedades_seleccionadas: [],
+            //variables de control
+            cargando_datos: false,
+            //accion_ejecutar:"crear",
+            boton: "",
+            text_boton: ""
+        };
+    },
+    mounted: function mounted() {
+        this.init();
+    },
+
+    methods: {
+        get_historia_medica: function get_historia_medica() {
+            var _this = this;
+
+            this.id_paciente = this.paciente ? this.paciente : $("#id_paciente").val();
+            this.id_historia_medica = this.historia_medica;
+
+            // precargar las opciones en "No"
+            this.bajo_tratamiento = "No";
+            this.toma_medicina = "No";
+            this.hospitalizado = "No";
+            this.embarazada = "No";
+            this.alergia_m = "No";
+            this.alergia_a = "No";
+            this.problema_anestesico_dental = "No";
+
+            //tablas relacionadas
+
+            //variables de majeno del DOM
+            this.boton = $('#btn_historia_medica');
+            this.text_boton = this.boton.html();
+
+            if (this.accion == "actualizar") {
+                $('#btn_historia_medica').prop("disabled", false);
+                __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/historias/get/' + this.id_paciente).then(function (response) {
+
+                    if (response.data.id_historia_medica) {
+                        _this.id_historia_medica = response.data.id_historia_medica;
+                        _this.ultima_consulta_medica = response.data.ultima_consulta_medica;
+                        _this.motivo_medica = response.data.motivo_medica;
+                        _this.ultima_consulta_odontologica = response.data.ultima_consulta_odontologica;
+                        _this.motivo_odontologica = response.data.motivo_odontologica;
+                        _this.bajo_tratamiento = response.data.bajo_tratamiento;
+                        _this.cual_tratamiento = response.data.cual_tratamiento;
+                        _this.toma_medicina = response.data.toma_medicina;
+                        _this.nombre_medicina = response.data.nombre_medicina;
+                        _this.hospitalizado = response.data.hospitalizado;
+                        _this.causa_hospitalizacion = response.data.causa_hospitalizacion;
+                        _this.embarazada = response.data.embarazada;
+                        _this.problema_anestesico_dental = response.data.problema_anestesico_dental;
+                        _this.alergia_m = response.data.alergia_m;
+                        _this.alergia_medicamentos = response.data.alergia_medicamentos;
+                        _this.alergia_a = response.data.alergia_a;
+                        _this.alergia_alimentos = response.data.alergia_alimentos;
+                        //this. = response.data.;
+                        _this.get_enfermedades_seleccionadas();
+                    } else {
+                        _this.accion = "insertar";
+                    }
+
+                    //campode dependientes de otras tablas                                              
+                });
+            }
+        },
+        get_enfermedades: function get_enfermedades() {
+            var _this2 = this;
+
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/configuracionsistema/get_enfermedades').then(function (response) {
+                _this2.enfermedades_t = response.data;
+            });
+        },
+        get_enfermedades_seleccionadas: function get_enfermedades_seleccionadas() {
+            var _this3 = this;
+
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/historiasenfermedades/get/' + this.id_historia_medica).then(function (response) {
+                _this3.enfermedades_seleccionadas = response.data;
+            }).catch(function (er) {
+                alertify.error('Error inesperado: ' + er);
+            }).finally(function () {
+                _this3.chequear_enfermedad();
+            });
+        },
+        chequear_enfermedad: function chequear_enfermedad() {
+            $.each(this.enfermedades_seleccionadas, function (idx, enfer) {
+                console.log(enfer.id_enfermedad);
+                //$("#div_check_enfermedades input[type=checkbox]").val().prop('checked', true);
+                $('#div_check_enfermedades input:checkbox[value=' + enfer.id_enfermedad + ']').prop("checked", "checked");
+            });
+        },
+        init: function init() {
+            var _this4 = this;
+
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.all([this.get_enfermedades()]).then(__WEBPACK_IMPORTED_MODULE_0_axios___default.a.spread(function (tipos_sangres) {
+                //lo dejamos en blanco pero podriamos trabanar con las respuestas
+            })).finally(function () {
+                _this4.get_historia_medica();
+            });
+        },
+        enviar: function enviar() {
+            if (this.accion == "insertar") {
+                this.insertar();
+            } else {
+                this.actualizar();
+            }
+        },
+        insertar: function insertar() {
+            var _this5 = this;
+
+            this.manejo_boton(true);
+            this.id_paciente = $("#id_paciente").val();
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/historias', $("#frm_historia_clinica_medica").serialize()).then(function (response) {
+                //console.log(response.data);
+                if (response.data.success) {
+                    console.log(response.data.paciente);
+                    _this5.id_historia_medica = _this5.historia_medica = response.data.historia.id_historia_medica;
+                    _this5.accion = "actualizar";
+                    alertify.success(response.data.message);
+                } else {
+                    $.each(response.data.message, function (idx, mes) {
+                        alertify.error(mes[0]);
+                    });
+                }
+            }).catch(function (er) {
+                alertify.error('Error inesperado: ' + er);
+            }).finally(function () {
+                _this5.manejo_boton(false);
+            });
+        },
+
+        actualizar: function actualizar() {
+            var _this6 = this;
+
+            this.manejo_boton(true);
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.put('/historias/' + this.id_paciente, $("#frm_historia_clinica_medica").serialize()).then(function (response) {
+                console.log(response.data);
+                if (response.data.success) {
+                    alertify.success(response.data.message);
+                } else {
+                    $.each(response.data.message, function (idx, mes) {
+                        alertify.error(mes[0]);
+                    });
+                }
+            }).catch(function (er) {
+                alertify.error('Error inesperado: ' + er);
+            }).finally(function () {
+                _this6.manejo_boton(false);
+            });
+        },
+        manejo_boton: function manejo_boton(que) {
+            if (que) {
+                this.boton.html('<i class="fa fa-spinner fa-spin"></i> Espere').prop("disabled", true);
+            } else {
+                this.boton.html(this.text_boton).prop("disabled", false);
+            }
+        }
+    }
+});
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form",
+    {
+      attrs: { id: "frm_historia_clinica_medica" },
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.enviar($event)
+        }
+      }
+    },
+    [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.id_paciente,
+            expression: "id_paciente"
+          }
+        ],
+        attrs: { type: "hidden", id: "id_paciente_hm", name: "id_paciente" },
+        domProps: { value: _vm.id_paciente },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.id_paciente = $event.target.value
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.id_historia_medica,
+            expression: "id_historia_medica"
+          }
+        ],
+        attrs: {
+          type: "hidden",
+          id: "id_historia_medica",
+          name: "id_historia_medica"
+        },
+        domProps: { value: _vm.id_historia_medica },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.id_historia_medica = $event.target.value
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-12  grid-margin stretch-card" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-body" }, [
+            _c("h4", [_vm._v("Historia Clínica-Médica")]),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c(
+                "div",
+                { staticClass: "form-group col-12 col-sm-6 col-md-4" },
+                [
+                  _c("label", { attrs: { for: "ultima_consulta_medica" } }, [
+                    _vm._v("Fecha de última consulta médica")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.ultima_consulta_medica,
+                        expression: "ultima_consulta_medica"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "date",
+                      id: "ultima_consulta_medica",
+                      name: "ultima_consulta_medica",
+                      placeholder: "..."
+                    },
+                    domProps: { value: _vm.ultima_consulta_medica },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.ultima_consulta_medica = $event.target.value
+                      }
+                    }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group col-12 col-sm-6 col-md-8" },
+                [
+                  _c("label", { attrs: { for: "motivo_medica" } }, [
+                    _vm._v("Motivo")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.motivo_medica,
+                        expression: "motivo_medica"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "motivo_medica",
+                      name: "motivo_medica",
+                      placeholder: "..."
+                    },
+                    domProps: { value: _vm.motivo_medica },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.motivo_medica = $event.target.value
+                      }
+                    }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group col-12 col-sm-6 col-md-4" },
+                [
+                  _c(
+                    "label",
+                    { attrs: { for: "ultima_consulta_odontologica" } },
+                    [_vm._v("Fecha de última consulta Odontológica")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.ultima_consulta_odontologica,
+                        expression: "ultima_consulta_odontologica"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "date",
+                      id: "ultima_consulta_odontologica",
+                      name: "ultima_consulta_odontologica",
+                      placeholder: "..."
+                    },
+                    domProps: { value: _vm.ultima_consulta_odontologica },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.ultima_consulta_odontologica = $event.target.value
+                      }
+                    }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group col-12 col-sm-6 col-md-8" },
+                [
+                  _c("label", { attrs: { for: "motivo_odontologica" } }, [
+                    _vm._v("Motivo")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.motivo_odontologica,
+                        expression: "motivo_odontologica"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "motivo_odontologica",
+                      name: "motivo_odontologica",
+                      placeholder: "..."
+                    },
+                    domProps: { value: _vm.motivo_odontologica },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.motivo_odontologica = $event.target.value
+                      }
+                    }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _c("hr"),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group col-12 col-sm-6 col-md-4" },
+                [
+                  _c("label", { attrs: { for: "" } }, [
+                    _vm._v("Está bajo algún tratamiento médico")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "d-flex " }, [
+                    _c("div", { staticClass: "form-check ml-md-4" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.bajo_tratamiento,
+                            expression: "bajo_tratamiento"
+                          }
+                        ],
+                        staticClass: "form-check-input",
+                        attrs: {
+                          type: "radio",
+                          name: "bajo_tratamiento",
+                          value: "Si"
+                        },
+                        domProps: {
+                          checked: _vm._q(_vm.bajo_tratamiento, "Si")
+                        },
+                        on: {
+                          change: function($event) {
+                            _vm.bajo_tratamiento = "Si"
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", { staticClass: "mt-1", attrs: { for: "" } }, [
+                        _vm._v(
+                          "\n                                    Si\n                                "
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-check ml-md-4" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.bajo_tratamiento,
+                            expression: "bajo_tratamiento"
+                          }
+                        ],
+                        staticClass: "form-check-input",
+                        attrs: {
+                          type: "radio",
+                          name: "bajo_tratamiento",
+                          value: "No"
+                        },
+                        domProps: {
+                          checked: _vm._q(_vm.bajo_tratamiento, "No")
+                        },
+                        on: {
+                          change: function($event) {
+                            _vm.bajo_tratamiento = "No"
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", { staticClass: "mt-1", attrs: { for: "" } }, [
+                        _vm._v(
+                          "\n                                    No\n                                "
+                        )
+                      ])
+                    ])
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group col-12 col-sm-6 col-md-8" },
+                [
+                  _c("label", { attrs: { for: "" } }, [_vm._v("Cual")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.cual_tratamiento,
+                        expression: "cual_tratamiento"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "cual_tratamiento",
+                      name: "cual_tratamiento",
+                      placeholder: "..."
+                    },
+                    domProps: { value: _vm.cual_tratamiento },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.cual_tratamiento = $event.target.value
+                      }
+                    }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group col-12 col-sm-6 col-md-4" },
+                [
+                  _c("label", { attrs: { for: "" } }, [
+                    _vm._v("Está tomando alguna medicina")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "d-flex " }, [
+                    _c("div", { staticClass: "form-check ml-md-4" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.toma_medicina,
+                            expression: "toma_medicina"
+                          }
+                        ],
+                        staticClass: "form-check-input",
+                        attrs: {
+                          type: "radio",
+                          name: "toma_medicina",
+                          value: "Si"
+                        },
+                        domProps: { checked: _vm._q(_vm.toma_medicina, "Si") },
+                        on: {
+                          change: function($event) {
+                            _vm.toma_medicina = "Si"
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", { staticClass: "mt-1", attrs: { for: "" } }, [
+                        _vm._v(
+                          "\n                                    Si\n                                "
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-check ml-md-4" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.toma_medicina,
+                            expression: "toma_medicina"
+                          }
+                        ],
+                        staticClass: "form-check-input",
+                        attrs: {
+                          type: "radio",
+                          name: "toma_medicina",
+                          value: "No"
+                        },
+                        domProps: { checked: _vm._q(_vm.toma_medicina, "No") },
+                        on: {
+                          change: function($event) {
+                            _vm.toma_medicina = "No"
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", { staticClass: "mt-1", attrs: { for: "" } }, [
+                        _vm._v(
+                          "\n                                    No\n                                "
+                        )
+                      ])
+                    ])
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group col-12 col-sm-6 col-md-8" },
+                [
+                  _c("label", { attrs: { for: "" } }, [
+                    _vm._v("Nombre/Dosis/Frecuencia")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.nombre_medicina,
+                        expression: "nombre_medicina"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "nombre_medicina",
+                      name: "nombre_medicina",
+                      placeholder: "..."
+                    },
+                    domProps: { value: _vm.nombre_medicina },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.nombre_medicina = $event.target.value
+                      }
+                    }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group col-12 col-sm-6 col-md-4" },
+                [
+                  _c("label", { attrs: { for: "" } }, [
+                    _vm._v("Ha sido hospitalizado")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "d-flex " }, [
+                    _c("div", { staticClass: "form-check ml-md-4" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.hospitalizado,
+                            expression: "hospitalizado"
+                          }
+                        ],
+                        staticClass: "form-check-input",
+                        attrs: {
+                          type: "radio",
+                          name: "hospitalizado",
+                          value: "Si"
+                        },
+                        domProps: { checked: _vm._q(_vm.hospitalizado, "Si") },
+                        on: {
+                          change: function($event) {
+                            _vm.hospitalizado = "Si"
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", { staticClass: "mt-1", attrs: { for: "" } }, [
+                        _vm._v(
+                          "\n                                    Si\n                                "
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-check ml-md-4" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.hospitalizado,
+                            expression: "hospitalizado"
+                          }
+                        ],
+                        staticClass: "form-check-input",
+                        attrs: {
+                          type: "radio",
+                          name: "hospitalizado",
+                          value: "No"
+                        },
+                        domProps: { checked: _vm._q(_vm.hospitalizado, "No") },
+                        on: {
+                          change: function($event) {
+                            _vm.hospitalizado = "No"
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", { staticClass: "mt-1", attrs: { for: "" } }, [
+                        _vm._v(
+                          "\n                                    No\n                                "
+                        )
+                      ])
+                    ])
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group col-12 col-sm-6 col-md-8" },
+                [
+                  _c("label", { attrs: { for: "" } }, [_vm._v("Causa")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.causa_hospitalizacion,
+                        expression: "causa_hospitalizacion"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "",
+                      name: "causa_hospitalizacion",
+                      placeholder: "..."
+                    },
+                    domProps: { value: _vm.causa_hospitalizacion },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.causa_hospitalizacion = $event.target.value
+                      }
+                    }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group col-12 col-sm-6 col-md-4" },
+                [
+                  _c("label", { attrs: { for: "" } }, [
+                    _vm._v("Esta embarazada")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "d-flex " }, [
+                    _c("div", { staticClass: "form-check ml-md-4" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.embarazada,
+                            expression: "embarazada"
+                          }
+                        ],
+                        staticClass: "form-check-input",
+                        attrs: {
+                          type: "radio",
+                          name: "embarazada",
+                          value: "Si"
+                        },
+                        domProps: { checked: _vm._q(_vm.embarazada, "Si") },
+                        on: {
+                          change: function($event) {
+                            _vm.embarazada = "Si"
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", { staticClass: "mt-1", attrs: { for: "" } }, [
+                        _vm._v(
+                          "\n                                    Si\n                                "
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-check ml-md-4" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.embarazada,
+                            expression: "embarazada"
+                          }
+                        ],
+                        staticClass: "form-check-input",
+                        attrs: {
+                          type: "radio",
+                          name: "embarazada",
+                          value: "No"
+                        },
+                        domProps: { checked: _vm._q(_vm.embarazada, "No") },
+                        on: {
+                          change: function($event) {
+                            _vm.embarazada = "No"
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", { staticClass: "mt-1", attrs: { for: "" } }, [
+                        _vm._v(
+                          "\n                                    No\n                                "
+                        )
+                      ])
+                    ])
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group col-12 col-sm-6 col-md-4" },
+                [
+                  _c("label", { attrs: { for: "" } }, [
+                    _vm._v("Problemas con anestesicos dentales")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "d-flex " }, [
+                    _c("div", { staticClass: "form-check ml-md-4" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.problema_anestesico_dental,
+                            expression: "problema_anestesico_dental"
+                          }
+                        ],
+                        staticClass: "form-check-input",
+                        attrs: {
+                          type: "radio",
+                          name: "problema_anestesico_dental",
+                          value: "Si"
+                        },
+                        domProps: {
+                          checked: _vm._q(_vm.problema_anestesico_dental, "Si")
+                        },
+                        on: {
+                          change: function($event) {
+                            _vm.problema_anestesico_dental = "Si"
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", { staticClass: "mt-1", attrs: { for: "" } }, [
+                        _vm._v(
+                          "\n                                    Si\n                                "
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-check ml-md-4" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.problema_anestesico_dental,
+                            expression: "problema_anestesico_dental"
+                          }
+                        ],
+                        staticClass: "form-check-input",
+                        attrs: {
+                          type: "radio",
+                          name: "problema_anestesico_dental",
+                          value: "No"
+                        },
+                        domProps: {
+                          checked: _vm._q(_vm.problema_anestesico_dental, "No")
+                        },
+                        on: {
+                          change: function($event) {
+                            _vm.problema_anestesico_dental = "No"
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", { staticClass: "mt-1", attrs: { for: "" } }, [
+                        _vm._v(
+                          "\n                                    No\n                                "
+                        )
+                      ])
+                    ])
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c("h4", { staticClass: "col-12" }, [
+                _vm._v("Enfermedades que padece")
+              ]),
+              _vm._v(" "),
+              _c("hr"),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "row", attrs: { id: "div_check_enfermedades" } },
+                _vm._l(_vm.enfermedades_t, function(enf) {
+                  return _c("enfermedad", {
+                    key: enf.id_enfermedad,
+                    attrs: {
+                      des_enfermedad: enf.enfermedad,
+                      valor: enf.id_enfermedad
+                    }
+                  })
+                })
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-12" }),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group col-12 col-sm-6 col-md-4" },
+                [
+                  _c("label", { attrs: { for: "" } }, [
+                    _vm._v("Alergia a medicamento")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "d-flex " }, [
+                    _c("div", { staticClass: "form-check ml-md-4" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.alergia_m,
+                            expression: "alergia_m"
+                          }
+                        ],
+                        staticClass: "form-check-input",
+                        attrs: {
+                          type: "radio",
+                          name: "alergia_m",
+                          value: "Si"
+                        },
+                        domProps: { checked: _vm._q(_vm.alergia_m, "Si") },
+                        on: {
+                          change: function($event) {
+                            _vm.alergia_m = "Si"
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", { staticClass: "mt-1", attrs: { for: "" } }, [
+                        _vm._v(
+                          "\n                                    Si\n                                "
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-check ml-md-4" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.alergia_m,
+                            expression: "alergia_m"
+                          }
+                        ],
+                        staticClass: "form-check-input",
+                        attrs: {
+                          type: "radio",
+                          name: "alergia_m",
+                          value: "No"
+                        },
+                        domProps: { checked: _vm._q(_vm.alergia_m, "No") },
+                        on: {
+                          change: function($event) {
+                            _vm.alergia_m = "No"
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", { staticClass: "mt-1", attrs: { for: "" } }, [
+                        _vm._v(
+                          "\n                                    No\n                                "
+                        )
+                      ])
+                    ])
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group col-12 col-sm-6 col-md-8" },
+                [
+                  _c("label", { attrs: { for: "" } }, [_vm._v("Nombre")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.alergia_medicamentos,
+                        expression: "alergia_medicamentos"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      name: "alergia_medicamentos",
+                      placeholder: "..."
+                    },
+                    domProps: { value: _vm.alergia_medicamentos },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.alergia_medicamentos = $event.target.value
+                      }
+                    }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group col-12 col-sm-6 col-md-4" },
+                [
+                  _c("label", { attrs: { for: "" } }, [
+                    _vm._v("Alergia a Alimento")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "d-flex " }, [
+                    _c("div", { staticClass: "form-check ml-md-4" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.alergia_a,
+                            expression: "alergia_a"
+                          }
+                        ],
+                        staticClass: "form-check-input",
+                        attrs: {
+                          type: "radio",
+                          name: "alergia_a",
+                          value: "Si"
+                        },
+                        domProps: { checked: _vm._q(_vm.alergia_a, "Si") },
+                        on: {
+                          change: function($event) {
+                            _vm.alergia_a = "Si"
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", { staticClass: "mt-1", attrs: { for: "" } }, [
+                        _vm._v(
+                          "\n                                    Si\n                                "
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-check ml-md-4" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.alergia_a,
+                            expression: "alergia_a"
+                          }
+                        ],
+                        staticClass: "form-check-input",
+                        attrs: {
+                          type: "radio",
+                          name: "alergia_a",
+                          value: "No"
+                        },
+                        domProps: { checked: _vm._q(_vm.alergia_a, "No") },
+                        on: {
+                          change: function($event) {
+                            _vm.alergia_a = "No"
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", { staticClass: "mt-1", attrs: { for: "" } }, [
+                        _vm._v(
+                          "\n                                    No\n                                "
+                        )
+                      ])
+                    ])
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group col-12 col-sm-6 col-md-8" },
+                [
+                  _c("label", { attrs: { for: "" } }, [_vm._v("Nombre")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.alergia_alimentos,
+                        expression: "alergia_alimentos"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "alergia_alimentos",
+                      name: "alergia_alimentos",
+                      placeholder: "..."
+                    },
+                    domProps: { value: _vm.alergia_alimentos },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.alergia_alimentos = $event.target.value
+                      }
+                    }
+                  })
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._m(0)
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-footer text-center" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-success btn-lg",
+          attrs: { id: "btn_historia_medica" }
+        },
+        [_vm._v("Guardar Historia Clinica")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-03267890", module.exports)
+  }
+}
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(49)
+/* template */
+var __vue_template__ = __webpack_require__(50)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -44747,12 +46155,12 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 46 */
+/* 49 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 //
 //
@@ -44793,7 +46201,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 47 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -44852,15 +46260,15 @@ if (false) {
 }
 
 /***/ }),
-/* 48 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(49)
+var __vue_script__ = __webpack_require__(52)
 /* template */
-var __vue_template__ = __webpack_require__(50)
+var __vue_template__ = __webpack_require__(53)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -44899,12 +46307,12 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 49 */
+/* 52 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 //
 //
@@ -44945,7 +46353,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 50 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -45004,7 +46412,7 @@ if (false) {
 }
 
 /***/ }),
-/* 51 */
+/* 54 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

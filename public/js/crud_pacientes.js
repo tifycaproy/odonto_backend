@@ -26,8 +26,8 @@ $(document).ready(function () {
                 }).then(function(){
                   boton.html(text_boton).prop("disabled", false);
                 });
-*/
-    });
 
+    });
+*/
 
 });

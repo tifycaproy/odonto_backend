@@ -30,8 +30,14 @@ Route::get('pacientes/create', 'Pacientes\pacientesController@create')->name('pa
 Route::post('pacientes', 'Pacientes\pacientesController@store');
 Route::get('pacientes/get/{id_paciente}', 'Pacientes\pacientesController@get_paciente');
 Route::get('pacientes/buscar/{id_paciente}', 'Pacientes\pacientesController@buscar');
-Route::get('/paciente/buscarna/{nombres_apellidos?}', 'Pacientes\pacientesController@buscar_nombres_apellidos');
+Route::get('paciente/buscarna/{nombres_apellidos?}', 'Pacientes\pacientesController@buscar_nombres_apellidos');
 Route::put('pacientes/{id_paciente}', 'Pacientes\pacientesController@update');
+
+Route::post('historias', 'Pacientes\historias_medicasController@store');
+Route::get('historias/get/{id_paciente}', 'Pacientes\historias_medicasController@get_historia_medica');
+Route::put('historias/{id_historia_medica}', 'Pacientes\historias_medicasController@update');
+
+Route::get('historiasenfermedades/get/{id_historia_medica}', 'Pacientes\historias_medicas_enfermedadesController@get_historia_medica_enfermedades');
 
 
 Route::get('pacientes/ficha/{id_paciente}/basico', [
@@ -75,9 +81,10 @@ Route::get('tratamientos', 'Tratamientos\tratamientosController@index')->name('t
 // ////////////
 // CONFIGURAION SISTEMA
 Route::get('configuracionsistema/get_tipos_sangres', 'ConfiguracionSistema\tipos_sangresController@get_tipos_sangres');
-Route::get('configuracionsistema/get_estados_civiles', 'ConfiguracionSistema\estados_civilesController@get_estados_civiles');
+Route::get('configuracionsistema/get_estados_civiles', 'ConfiguracionSistema\estados_civilesController@get_all');
 Route::get('configuracionsistema/get_sexos', 'ConfiguracionSistema\sexosController@get_sexos');
 Route::get('configuracionsistema/get_ocupaciones', 'ConfiguracionSistema\ocupacionesController@get_ocupaciones');
 Route::get('configuracionsistema/get_parentescos', 'ConfiguracionSistema\parentescosController@get_parentescos');
 Route::get('configuracionsistema/get_referidores', 'ConfiguracionSistema\referidoresController@get_referidores');
 Route::get('configuracionsistema/get_paises', 'ConfiguracionSistema\paisesController@get_paises');
+Route::get('configuracionsistema/get_enfermedades', 'ConfiguracionSistema\enfermedadesController@get_all');
