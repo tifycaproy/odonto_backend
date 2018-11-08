@@ -12,7 +12,7 @@
             {{-- HeaderCard --}}
             <div class="row mb-4">
                 <div class="col ">
-                    <form method="get" action="/paciente/buscarna/">
+                    <form method="get" action="pacientes/buscarna/">
                         <div class="row d-flex justify-content-end">
                             <div class="input-group col-md-4 col-12">
                                 <input type="text" name="nombres_apellidos" class="form-control" placeholder="Buscar por Nombres o Apellidos" aria-label="Buscar" aria-describedby="colored-addon3">
@@ -47,13 +47,13 @@
                     </thead>
                     <tbody class="">
                         @forelse ($pacientes as $paciente)
-                        <tr>
+                        <tr id="tr_{{$paciente->id_paciente}}">
                             <td>
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    <a href="{{ route('paciente.ficha.basico',$paciente->id_paciente) }}" class="btn btn-icons btn-inverse-secondary"><i class="fa fa-eye"></i></a>
-                                    <a class="btn btn-icons btn-inverse-secondary"><i class="fa fa-file"></i></a>
-                                    <a class="btn btn-icons btn-inverse-secondary"><i class="fa fa-at"></i></a>
-                                    <a class="btn btn-icons btn-inverse-secondary"><i class="fa fa-times"></i></a>
+                                    <a href="{{ route('paciente.ficha.basico',$paciente->id_paciente) }}" class="btn btn-icons btn-inverse-secondary" title="Ver Paciente"><i class="fa fa-eye"></i></a>
+                                    <a class="btn btn-icons btn-inverse-secondary"><i class="fa fa-file" title="(Accion) ..."></i></a>
+                                    <a class="btn btn-icons btn-inverse-secondary"><i class="fa fa-at" title="(Accion) ..."></i></a>
+                                    <a class="btn btn-icons btn-inverse-secondary" href="#" onclick="fun_pregunta_paciente({{$paciente->id_paciente}},'tr_')"><i class="fa fa-times" title="Eliminar Paciente"></i></a>
                                 </div>
                             </td>
                             <td>{{ $paciente->nombres }}</td>
@@ -83,4 +83,8 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script src="{{asset('js/pacientes.js')}}"></script>
+@endpush
 

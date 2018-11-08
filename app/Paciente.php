@@ -15,6 +15,6 @@ class Paciente extends Model
                                 'telefono_emergencia','menor',
                                 //campos dependientes de otras tablas
                                 'id_pais','id_parentesco','id_tipo_sangre','id_estado_civil',
-                                'id_sexo','id_ocupacion','id_referidor','id_pais'];
+                                'id_sexo','id_ocupacion','id_referidor','id_pais','id_status_paciente'];
         
 }

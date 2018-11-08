@@ -29,8 +29,11 @@ Route::get('pacientes/create', 'Pacientes\pacientesController@create')->name('pa
 
 Route::post('pacientes', 'Pacientes\pacientesController@store');
 Route::get('pacientes/get/{id_paciente}', 'Pacientes\pacientesController@get_paciente');
+Route::post('pacientes/eliminar/{id_paciente}', 'Pacientes\pacientesController@eliminar');
+//eso es necesario por la ruta despues de una busqueda
+Route::post('pacientes/pacientes/eliminar/{id_paciente}', 'Pacientes\pacientesController@eliminar');
 Route::get('pacientes/buscar/{id_paciente}', 'Pacientes\pacientesController@buscar');
-Route::get('paciente/buscarna/{nombres_apellidos?}', 'Pacientes\pacientesController@buscar_nombres_apellidos');
+Route::get('pacientes/buscarna/{nombres_apellidos?}', 'Pacientes\pacientesController@buscar_nombres_apellidos');
 Route::put('pacientes/{id_paciente}', 'Pacientes\pacientesController@update');
 
 Route::post('historias', 'Pacientes\historias_medicasController@store');

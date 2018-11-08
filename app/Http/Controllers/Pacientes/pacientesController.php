@@ -17,7 +17,8 @@ class pacientesController extends Controller {
 
         return
                 $pacientes = DB::table('pacientes')
-                ->join('sexos', 'sexos.id_sexo', '=', 'pacientes.id_sexo');
+                ->join('sexos', 'sexos.id_sexo', '=', 'pacientes.id_sexo')
+                ->where('id_status_paciente','=','1');
         //->select('users.*', 'contacts.phone', 'orders.price')
         //$pacientes = DB::select('SELECT * FROM pacientes JOIN sexos USING(id_sexo)');
     }
@@ -132,6 +133,11 @@ class pacientesController extends Controller {
         }
 
         return $retorna;
+    }
+    
+    public function eliminar(Request $request) {
+        $paciente = Paciente::find($request->id_paciente)->update(['id_status_paciente' => 2]);
+        return $retorna = response()->json(['success' => true, 'message' => 'Se Elimino el Paciente', 'paciente' => json_decode($paciente)], 200);
     }
 
 }
