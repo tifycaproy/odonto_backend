@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="latin1" collation="latin1_swedish_ci">odonto</database>
+</source>
+<canvas zoom="100">
+<tables>
+<table name="enfermedades" view="colnames">
+<left>893</left>
+<top>235</top>
+<width>132</width>
+<height>112</height>
+<sql_create_table>CREATE TABLE `enfermedades` (
+  `id_enfermedad` int(11) NOT NULL AUTO_INCREMENT,
+  `enfermedad` varchar(254) NOT NULL,
+  PRIMARY KEY (`id_enfermedad`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="estados_civiles" view="colnames">
+<left>140</left>
+<top>141</top>
+<width>130</width>
+<height>112</height>
+<sql_create_table>CREATE TABLE `estados_civiles` (
+  `id_estado_civil` int(11) NOT NULL AUTO_INCREMENT,
+  `estado_civil` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_estado_civil`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="historias_medicas" view="colnames">
+<left>595</left>
+<top>28</top>
+<width>214</width>
+<height>423</height>
+<sql_create_table>CREATE TABLE `historias_medicas` (
+  `id_historia_medica` int(11) NOT NULL AUTO_INCREMENT,
+  `id_paciente` int(11) NOT NULL,
+  `ultima_consulta_medica` date DEFAULT NULL,
+  `motivo_medica` varchar(254) DEFAULT NULL,
+  `ultima_consulta_odontologica` date DEFAULT NULL,
+  `motivo_odontologica` varchar(254) DEFAULT NULL,
+  `bajo_tratamiento` char(2) NOT NULL,
+  `cual_tratamiento` varchar(254) DEFAULT NULL,
+  `toma_medicina` char(2) NOT NULL,
+  `nombre_medicina` varchar(254) DEFAULT NULL,
+  `hospitalizado` char(2) NOT NULL,
+  `causa_hospitalizacion` varchar(254) DEFAULT NULL,
+  `embarazada` char(2) NOT NULL,
+  `problema_anestesico_dental` char(2) NOT NULL,
+  `alergia_m` char(2) NOT NULL,
+  `alergia_medicamentos` varchar(254) DEFAULT NULL,
+  `alergia_a` char(2) NOT NULL,
+  `alergia_alimentos` varchar(254) DEFAULT NULL,
+  PRIMARY KEY (`id_historia_medica`),
+  KEY `FK_historias_medicas_id_paciente` (`id_paciente`),
+  CONSTRAINT `FK_historias_medicas_id_paciente` FOREIGN KEY (`id_paciente`) REFERENCES `pacientes` (`id_paciente`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="historias_medicas_enfermedades" view="colnames">
+<left>860</left>
+<top>55</top>
+<width>229</width>
+<height>129</height>
+<sql_create_table>CREATE TABLE `historias_medicas_enfermedades` (
+  `id_historia_medica_enfermedad` int(11) NOT NULL AUTO_INCREMENT,
+  `id_historia_medica` int(11) NOT NULL,
+  `id_enfermedad` int(11) NOT NULL,
+  PRIMARY KEY (`id_historia_medica_enfermedad`),
+  KEY `FK_historias_medicas_enfermedades_id_historia_medica` (`id_historia_medica`),
+  KEY `FK_historias_medicas_enfermedades_id_enfermedad` (`id_enfermedad`),
+  CONSTRAINT `FK_historias_medicas_enfermedades_id_enfermedad` FOREIGN KEY (`id_enfermedad`) REFERENCES `enfermedades` (`id_enfermedad`) ON UPDATE CASCADE,
+  CONSTRAINT `FK_historias_medicas_enfermedades_id_historia_medica` FOREIGN KEY (`id_historia_medica`) REFERENCES `historias_medicas` (`id_historia_medica`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="ocupaciones" view="colnames">
+<left>185</left>
+<top>265</top>
+<width>120</width>
+<height>112</height>
+<sql_create_table>CREATE TABLE `ocupaciones` (
+  `id_ocupacion` int(11) NOT NULL AUTO_INCREMENT,
+  `ocupacion` varchar(250) NOT NULL,
+  PRIMARY KEY (`id_ocupacion`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="pacientes" view="colnames">
+<left>375</left>
+<top>23</top>
+<width>166</width>
+<height>509</height>
+<sql_create_table>CREATE TABLE `pacientes` (
+  `id_paciente` int(11) NOT NULL AUTO_INCREMENT,
+  `identificacion` varchar(20) DEFAULT NULL,
+  `nombres` varchar(100) NOT NULL,
+  `apellidos` varchar(100) NOT NULL,
+  `fecha_nacimiento` date DEFAULT NULL,
+  `edad` int(2) DEFAULT NULL,
+  `telefono` varchar(50) DEFAULT NULL,
+  `celular` varchar(50) DEFAULT NULL,
+  `email` varchar(120) DEFAULT NULL,
+  `direccion` varchar(254) DEFAULT NULL,
+  `seguro_medico` varchar(120) DEFAULT NULL,
+  `nss` varchar(120) DEFAULT NULL,
+  `nombre_emergencia` varchar(120) DEFAULT NULL,
+  `telefono_emergencia` varchar(50) DEFAULT NULL,
+  `menor` char(2) DEFAULT 'NO',
+  `id_pais` int(11) NOT NULL,
+  `id_tipo_sangre` int(11) NOT NULL,
+  `id_estado_civil` int(11) NOT NULL,
+  `id_sexo` int(11) NOT NULL,
+  `id_ocupacion` int(11) NOT NULL,
+  `id_parentesco` int(11) DEFAULT '1',
+  `id_referidor` int(11) DEFAULT '1',
+  PRIMARY KEY (`id_paciente`),
+  KEY `FK_pacientes_id_sexo` (`id_sexo`),
+  KEY `FK_pacientes_id_pais` (`id_pais`),
+  KEY `FK_pacientes_id_tipo_sangre` (`id_tipo_sangre`),
+  KEY `FK_pacientes_id_estado_civil` (`id_estado_civil`),
+  KEY `FK_pacientes_id_ocupacion` (`id_ocupacion`),
+  KEY `FK_pacientes_id_parentesco` (`id_parentesco`),
+  KEY `FK_pacientes_id_referidor` (`id_referidor`),
+  CONSTRAINT `FK_pacientes_id_estado_civil` FOREIGN KEY (`id_estado_civil`) REFERENCES `estados_civiles` (`id_estado_civil`) ON UPDATE CASCADE,
+  CONSTRAINT `FK_pacientes_id_ocupacion` FOREIGN KEY (`id_ocupacion`) REFERENCES `ocupaciones` (`id_ocupacion`) ON UPDATE CASCADE,
+  CONSTRAINT `FK_pacientes_id_pais` FOREIGN KEY (`id_pais`) REFERENCES `paises` (`id_pais`) ON UPDATE CASCADE,
+  CONSTRAINT `FK_pacientes_id_parentesco` FOREIGN KEY (`id_parentesco`) REFERENCES `parentescos` (`id_parentesco`) ON UPDATE CASCADE,
+  CONSTRAINT `FK_pacientes_id_referidor` FOREIGN KEY (`id_referidor`) REFERENCES `referidores` (`id_referidor`) ON UPDATE CASCADE,
+  CONSTRAINT `FK_pacientes_id_sexo` FOREIGN KEY (`id_sexo`) REFERENCES `sexos` (`id_sexo`) ON UPDATE CASCADE,
+  CONSTRAINT `FK_pacientes_id_tipo_sangre` FOREIGN KEY (`id_tipo_sangre`) REFERENCES `tipos_sangres` (`id_tipo_sangre`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="paises" view="colnames">
+<left>6</left>
+<top>79</top>
+<width>86</width>
+<height>112</height>
+<sql_create_table>CREATE TABLE `paises` (
+  `id_pais` int(11) NOT NULL AUTO_INCREMENT,
+  `pais` varchar(150) NOT NULL,
+  PRIMARY KEY (`id_pais`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="parentescos" view="colnames">
+<left>182</left>
+<top>393</top>
+<width>126</width>
+<height>112</height>
+<sql_create_table>CREATE TABLE `parentescos` (
+  `id_parentesco` int(11) NOT NULL AUTO_INCREMENT,
+  `parentesco` varchar(30) NOT NULL,
+  PRIMARY KEY (`id_parentesco`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="referidores" view="colnames">
+<left>17</left>
+<top>424</top>
+<width>113</width>
+<height>112</height>
+<sql_create_table>CREATE TABLE `referidores` (
+  `id_referidor` int(11) NOT NULL AUTO_INCREMENT,
+  `referidor` varchar(20) NOT NULL,
+  PRIMARY KEY (`id_referidor`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="sexos" view="colnames">
+<left>55</left>
+<top>274</top>
+<width>90</width>
+<height>108</height>
+<sql_create_table>CREATE TABLE `sexos` (
+  `id_sexo` int(11) NOT NULL AUTO_INCREMENT,
+  `sexo` varchar(20) NOT NULL,
+  PRIMARY KEY (`id_sexo`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="tipos_sangres" view="colnames">
+<left>126</left>
+<top>17</top>
+<width>130</width>
+<height>112</height>
+<sql_create_table>CREATE TABLE `tipos_sangres` (
+  `id_tipo_sangre` int(11) NOT NULL AUTO_INCREMENT,
+  `tipo_sangre` varchar(20) NOT NULL,
+  PRIMARY KEY (`id_tipo_sangre`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>
