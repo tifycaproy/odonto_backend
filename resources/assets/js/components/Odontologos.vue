@@ -6,29 +6,30 @@
 </template>
 
 <script>
-import axios from 'axios'
+    import axios from 'axios'
 
-    export default {
-		data(){
-			return {
-                comp_odontologo: '',
-				odontologos:[],
-			}
-		},
-		created: function(){
-			this.get_odontologos();
-		},
-        mounted() {
-           this.created();
-        },
-		methods:{
-			get_odontologos: function(){
-				var url = '/configuracionsistema/get_odontologos';
-				axios.get(url).then((response)=>{
-					this.odontologos = response.data;
-                                        //this.comp_tipo_sangre=;
-				});
-		   },
-		}
-    }
+            export default {
+                data() {
+                    return {
+                        comp_odontologo: '',
+                        odontologos: [],
+                    }
+                },
+                created() {
+                    this.get_odontologos();
+                },
+                mounted() {
+                    this.created();
+                    //this.get_odontologos();
+                },
+                methods: {
+                    get_odontologos: function () {
+                        var url = '/configuracionsistema/get_odontologos';
+                        axios.get(url).then((response) => {
+                            this.odontologos = response.data;
+                            //this.comp_tipo_sangre=;
+                        });
+                    },
+                }
+            }
 </script>

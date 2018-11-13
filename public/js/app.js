@@ -1078,7 +1078,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(12);
-module.exports = __webpack_require__(57);
+module.exports = __webpack_require__(60);
 
 
 /***/ }),
@@ -1110,6 +1110,7 @@ Vue.component('tipos-sangre', __webpack_require__(48));
 
 Vue.component('estados-cilives', __webpack_require__(51));
 Vue.component('odontologos', __webpack_require__(54));
+Vue.component('tratamientos', __webpack_require__(57));
 
 var app = new Vue({
   el: '#app'
@@ -46478,31 +46479,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	data: function data() {
-		return {
-			comp_odontologo: '',
-			odontologos: []
-		};
-	},
+    data: function data() {
+        return {
+            comp_odontologo: '',
+            odontologos: []
+        };
+    },
+    created: function created() {
+        this.get_odontologos();
+    },
+    mounted: function mounted() {
+        this.created();
+        //this.get_odontologos();
+    },
 
-	created: function created() {
-		this.get_odontologos();
-	},
-	mounted: function mounted() {
-		this.created();
-	},
+    methods: {
+        get_odontologos: function get_odontologos() {
+            var _this = this;
 
-	methods: {
-		get_odontologos: function get_odontologos() {
-			var _this = this;
-
-			var url = '/configuracionsistema/get_odontologos';
-			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(url).then(function (response) {
-				_this.odontologos = response.data;
-				//this.comp_tipo_sangre=;
-			});
-		}
-	}
+            var url = '/configuracionsistema/get_odontologos';
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(url).then(function (response) {
+                _this.odontologos = response.data;
+                //this.comp_tipo_sangre=;
+            });
+        }
+    }
 });
 
 /***/ }),
@@ -46566,6 +46567,432 @@ if (false) {
 
 /***/ }),
 /* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(58)
+/* template */
+var __vue_template__ = __webpack_require__(59)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Tratamientos.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-47f1d6da", Component.options)
+  } else {
+    hotAPI.reload("data-v-47f1d6da", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 58 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['accion', 'paciente', 'tratamiento'],
+    data: function data() {
+        return {
+            id_tratamiento: "",
+            id_paciente: "",
+            nombre_tratamiento: "",
+            fecha_creado: "",
+            id_odontologo: "",
+            //campode dependientes de otras tablas
+
+            //dependencias normalmente son select, radios, checkbox
+            odontologos: [],
+            //variables de control
+            cargando_datos: false,
+            //accion_ejecutar:"crear",
+            boton: "",
+            text_boton: ""
+        };
+    },
+    mounted: function mounted() {
+        this.init();
+    },
+
+    methods: {
+        get_tratamiento: function get_tratamiento() {
+            var _this = this;
+
+            this.id_tratamiento = this.tratamiento;
+            this.id_paciente = this.paciente;
+            //variables de majeno del DOM
+            this.boton = $('#btn_crear_tratamiento');
+            this.text_boton = this.boton.html();
+
+            if (this.accion == "actualizar") {
+                __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/tratamientos/get/' + this.id_tratamiento).then(function (response) {
+
+                    _this.id_tratamiento = response.data.id_tratamiento;
+                    _this.id_paciente = response.data.id_paciente;
+                    _this.nombre_tratamiento = response.data.nombre_tratamiento;
+                    _this.fecha_creado = response.data.fecha_creado;
+                    _this.id_odontologo = response.data.id_odontologo;
+                });
+            }
+        },
+        get_odontologos: function get_odontologos() {
+            var _this2 = this;
+
+            var url = '/configuracionsistema/get_odontologos';
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(url).then(function (response) {
+                _this2.odontologos = response.data;
+                //this.comp_tipo_sangre=;
+            });
+        },
+        init: function init() {
+            var _this3 = this;
+
+            // nos traemos las dependencias del componente
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.all([this.get_odontologos()]).then(__WEBPACK_IMPORTED_MODULE_0_axios___default.a.spread(function (lo_trajo_odontologos) {
+                //lo dejamos en blanco pero podriamos trabanar con las respuestas
+            })).finally(function () {
+                _this3.get_tratamiento();
+            });
+        },
+        enviar: function enviar() {
+            if (this.accion == "insertar") {
+                this.insertar();
+            } else {
+                this.actualizar();
+            }
+        },
+        insertar: function insertar() {
+            var _this4 = this;
+
+            this.manejo_boton(true);
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/tratamientos', $("#frm_tratamientos").serialize()).then(function (response) {
+                //console.log(response.data);
+                if (response.data.success) {
+                    // console.log(response.data.paciente);
+                    _this4.id_tratamiento = _this4.tratamiento = response.data.tratamiento.id_tratamiento;
+                    _this4.id_paciente = _this4.paciente = response.data.tratamiento.id_paciente;
+                    _this4.accion = "actualizar";
+                    alertify.success(response.data.message);
+                } else {
+                    $.each(response.data.message, function (idx, mes) {
+                        alertify.error(mes[0]);
+                    });
+                }
+            }).catch(function (er) {
+                alertify.error('Error inesperado: ' + er);
+            }).finally(function () {
+                _this4.manejo_boton(false);
+            });
+        },
+
+        actualizar: function actualizar() {
+            var _this5 = this;
+
+            this.manejo_boton(true);
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.put('/tratamientos/' + this.id_tratamiento, $("#frm_tratamientos").serialize()).then(function (response) {
+                console.log(response.data);
+                if (response.data.success) {
+                    alertify.success(response.data.message);
+                } else {
+                    $.each(response.data.message, function (idx, mes) {
+                        alertify.error(mes[0]);
+                    });
+                }
+            }).catch(function (er) {
+                alertify.error('Error inesperado: ' + er);
+            }).finally(function () {
+                _this5.manejo_boton(false);
+            });
+        },
+        manejo_boton: function manejo_boton(que) {
+            if (que) {
+                this.boton.html('<i class="fa fa-spinner fa-spin"></i> Espere').prop("disabled", true);
+            } else {
+                this.boton.html(this.text_boton).prop("disabled", false);
+            }
+        }
+    }
+});
+
+/***/ }),
+/* 59 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form",
+    {
+      attrs: { id: "frm_tratamientos" },
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.enviar($event)
+        }
+      }
+    },
+    [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.id_tratamiento,
+            expression: "id_tratamiento"
+          }
+        ],
+        attrs: {
+          type: "hidden",
+          name: "id_tratamiento",
+          id: "id_tratamiento",
+          value: ""
+        },
+        domProps: { value: _vm.id_tratamiento },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.id_tratamiento = $event.target.value
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.id_paciente,
+            expression: "id_paciente"
+          }
+        ],
+        attrs: {
+          type: "hidden",
+          name: "id_paciente",
+          id: "id_paciente",
+          value: ""
+        },
+        domProps: { value: _vm.id_paciente },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.id_paciente = $event.target.value
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-12  grid-margin stretch-card" }, [
+        _c("div", { staticClass: "form-group col-12 col-sm-3 " }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Nombre Tratamiento")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.nombre_tratamiento,
+                expression: "nombre_tratamiento"
+              }
+            ],
+            staticClass: "form-control  form-control",
+            attrs: {
+              type: "text",
+              name: "nombre_tratamiento",
+              placeholder: "..."
+            },
+            domProps: { value: _vm.nombre_tratamiento },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.nombre_tratamiento = $event.target.value
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group col-12 col-sm-3 " }, [
+          _c("label", { attrs: { for: "" } }, [_vm._v("Fecha")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.fecha_creado,
+                expression: "fecha_creado"
+              }
+            ],
+            staticClass: "form-control form-control",
+            attrs: {
+              type: "date",
+              name: "fecha_creado",
+              placeholder: "...",
+              value: ""
+            },
+            domProps: { value: _vm.fecha_creado },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.fecha_creado = $event.target.value
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group col-12 col-sm-4" }, [
+          _c("label", { attrs: { for: "id_odontologo" } }, [
+            _vm._v("Odontologo")
+          ]),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.id_odontologo,
+                  expression: "id_odontologo"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { id: "id_odontologo", name: "id_odontologo" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.id_odontologo = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
+            },
+            [
+              _c("option", { attrs: { value: "" } }, [_vm._v("Seleccione...")]),
+              _vm._v(" "),
+              _vm._l(_vm.odontologos, function(compo) {
+                return _c("option", { domProps: { value: compo.id } }, [
+                  _vm._v(_vm._s(compo.name))
+                ])
+              })
+            ],
+            2
+          )
+        ]),
+        _vm._v(" "),
+        _vm._m(0)
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-12 col-sm-4" }, [
+      _c("br"),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-lg btn-success",
+          attrs: { id: "btn_crear_tratamiento" }
+        },
+        [_vm._v("Guardar")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-47f1d6da", module.exports)
+  }
+}
+
+/***/ }),
+/* 60 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

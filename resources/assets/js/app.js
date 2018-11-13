@@ -23,6 +23,7 @@ Vue.component('tipos-sangre', require('./components/TiposSangre.vue'));
 
 Vue.component('estados-cilives', require('./components/EstadosCiviles.vue'));
 Vue.component('odontologos', require('./components/Odontologos.vue'));
+Vue.component('tratamientos', require('./components/Tratamientos.vue'));
 
 const app = new Vue({
     el: '#app',

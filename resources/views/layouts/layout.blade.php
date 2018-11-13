@@ -91,9 +91,9 @@
   <script src="{{ asset('js/app.js') }}"></script>
 
   <script src="{{ asset('js/alertifyjs/alertify.js') }}"></script>
-
+  
   @include('alertify::alertify')
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="{{ asset('js/axios.min.js') }}"></script>
   @stack('scripts')
 </body>
 

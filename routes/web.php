@@ -84,6 +84,9 @@ Route::get('citas/create', 'Citas\citasController@create')->name('citas/create')
 // TRATAMIENTOS
 
 Route::get('tratamientos', 'Tratamientos\tratamientosController@index')->name('tratamientos');
+Route::post('tratamientos', 'Tratamientos\tratamientosController@store');
+Route::get('tratamientos/get/{id_tratamiento}', 'Tratamientos\tratamientosController@get_tratamiento');
+Route::put('tratamientos/{id_tratamiento}', 'Tratamientos\tratamientosController@update');
 
 
 
