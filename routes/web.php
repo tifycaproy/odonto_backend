@@ -47,10 +47,17 @@ Route::get('pacientes/ficha/{id_paciente}/basico', [
         'uses' => 'Pacientes\pacientesController@ficha_basico',
         'as'   => 'paciente.ficha.basico'
  ]);
+
 Route::get('pacientes/ficha/{id}/tratamientos', [
         'uses' => 'Pacientes\pacientesController@ficha_tratamientos',
         'as'   => 'paciente.ficha.tratamientos'
  ]);
+
+ Route::get('pacientes/ficha/{id_paciente}/tratamientos/create', [
+        'uses' => 'Pacientes\pacientesController@ficha_tratamientos_cretate',
+        'as'   => 'paciente.ficha.create-tratamientos'
+ ]);
+
 Route::get('pacientes/ficha/{id}/citas', [
         'uses' => 'Pacientes\pacientesController@ficha_citas',
         'as'   => 'paciente.ficha.citas'
@@ -91,3 +98,4 @@ Route::get('configuracionsistema/get_parentescos', 'ConfiguracionSistema\parente
 Route::get('configuracionsistema/get_referidores', 'ConfiguracionSistema\referidoresController@get_referidores');
 Route::get('configuracionsistema/get_paises', 'ConfiguracionSistema\paisesController@get_paises');
 Route::get('configuracionsistema/get_enfermedades', 'ConfiguracionSistema\enfermedadesController@get_all');
+Route::get('configuracionsistema/get_odontologos', 'Auth\userControlle@get_all');

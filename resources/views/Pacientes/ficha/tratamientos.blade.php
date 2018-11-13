@@ -7,7 +7,7 @@
 
       <div class="d-flex justify-content-between align-items-center">
         <h4>Historial de Tratamientos</h4>
-        <a href="" class="btn btn-icons btn-inverse-primary ">
+        <a href="{{ route('paciente.ficha.create-tratamientos',$id_paciente) }}" class="btn btn-icons btn-inverse-primary ">
           <i class="fa fa-plus"></i>
         </a>
       </div>

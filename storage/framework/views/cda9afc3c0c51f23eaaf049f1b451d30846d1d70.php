@@ -1,36 +1,41 @@
+<?php $__env->startSection('titulo', 'Creando Tratamiento'); ?>
 <?php $__env->startSection('content-ficha'); ?>
 <div class="col-12  ">
   <div class="card">
     <div class="card-body ">
 
       <div class="d-flex justify-content-between align-items-center">
-        <h4>Historial de Tratamientos</h4>
-        <a href="" class="btn btn-icons btn-inverse-primary ">
-          <i class="fa fa-plus"></i>
-        </a>
+        <h4>Crear un Tratamientos</h4>
       </div>
       
       <hr>
       <form action="" method="" accept-charset="utf-8">
+
+
            <div class="row col d-flex justify-content-end">
               <div class="form-group col-12 col-sm-3 ">
-                <label for="">Desde</label>
-                <input type="date" class="form-control  form-control-sm" id="" name="" placeholder="...">
+                <label for="">Nombre Tratamiento</label>
+                <input type="text" class="form-control  form-control-sm" name="nombre_tratamiento" placeholder="...">
               </div>
               <div class="form-group col-12 col-sm-3 ">
-                <label for="">Hasta</label>
-                <input type="date" class="form-control form-control-sm" id="" name="" placeholder="...">
+                <label for="">Fecha</label>
+                <input type="date" class="form-control form-control-sm" name="fecha_creado" placeholder="...">
               </div>
               <div class="form-group col-12 col-sm-4">
-                <label for="">Odontólogos</label>
-                <select class="form-control form-control-sm" id="" name="">
-                  <option>Seleccione</option>
-                  <option>Femenimo</option>
-                  <option>Masculino</option>
-                </select>
+                <label for="id_odontologo">Odontologo</label>
+                <odontologos></odontologos>
               </div>
-           </div>
+
+                 <button class="btn btn-sm btn-success" type="submit">Guardar</button>
+              <div class="form-group col-12 col-sm-4">
+              </div>
+
+            </div>
+
       </form>
+
+
+      <!--
       <div class="table-responsive">
         <table class="table">
             <thead class="">
@@ -86,6 +91,8 @@
             </tbody>
           </table>
       </div>
+
+      -->
       
     </div>
   </div>

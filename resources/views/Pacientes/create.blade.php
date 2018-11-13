@@ -25,7 +25,7 @@
 <div class="col-12 text-center mt-5">
     <input type="submit" class="btn btn-primary btn-lg" name="" value="Guardar">
 </div>
-</form>
+
 
 
 @endsection

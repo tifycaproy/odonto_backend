@@ -22,6 +22,7 @@ Vue.component('historia-clinica-medica', require('./components/HistoriaClinicaMe
 Vue.component('tipos-sangre', require('./components/TiposSangre.vue'));
 
 Vue.component('estados-cilives', require('./components/EstadosCiviles.vue'));
+Vue.component('odontologos', require('./components/Odontologos.vue'));
 
 const app = new Vue({
     el: '#app',

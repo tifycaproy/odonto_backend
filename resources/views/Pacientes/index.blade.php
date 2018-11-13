@@ -51,8 +51,10 @@
                             <td>
                                 <div class="btn-group" role="group" aria-label="Basic example">
                                     <a href="{{ route('paciente.ficha.basico',$paciente->id_paciente) }}" class="btn btn-icons btn-inverse-secondary" title="Ver Paciente"><i class="fa fa-eye"></i></a>
-                                    <a class="btn btn-icons btn-inverse-secondary"><i class="fa fa-file" title="(Accion) ..."></i></a>
-                                    <a class="btn btn-icons btn-inverse-secondary"><i class="fa fa-at" title="(Accion) ..."></i></a>
+                                    <!--
+                                    <a class="btn btn-icons btn-inverse-secondary"><i class="fa fa-file" title="Mostrar PDF"></i></a>
+                                    <a class="btn btn-icons btn-inverse-secondary"><i class="fa fa-at" title="Enviar correo"></i></a>
+                                    -->
                                     <a class="btn btn-icons btn-inverse-secondary" href="#" onclick="fun_pregunta_paciente({{$paciente->id_paciente}},'tr_')"><i class="fa fa-times" title="Eliminar Paciente"></i></a>
                                 </div>
                             </td>

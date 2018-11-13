@@ -50,23 +50,28 @@ class pacientesController extends Controller {
 
     public function ficha_basico($id_paciente) {
         // return "este es el paciente: ".$id_paciente;
-        return view('Pacientes.ficha.index', compact('id_paciente'));
+        // return view('Pacientes.ficha.index', compact('id_paciente'));
+        return view('Pacientes.ficha.index')->with('id_paciente', $id_paciente);
     }
 
-    public function ficha_tratamientos() {
-        return view('Pacientes.ficha.tratamientos');
+    public function ficha_tratamientos($id_paciente) {
+        return view('Pacientes.ficha.tratamientos')->with('id_paciente', $id_paciente);
     }
 
-    public function ficha_citas() {
-        return view('Pacientes.ficha.citas');
+    public function ficha_tratamientos_cretate($id_paciente) {
+        return view('Pacientes.ficha.create-tratamientos')->with('id_paciente', $id_paciente);
     }
 
-    public function ficha_recipes() {
-        return view('Pacientes.ficha.recipes');
+    public function ficha_citas($id_paciente) {
+        return view('Pacientes.ficha.citas')->with('id_paciente', $id_paciente);
     }
 
-    public function ficha_informe() {
-        return view('Pacientes.ficha.informe');
+    public function ficha_recipes($id_paciente) {
+        return view('Pacientes.ficha.recipes')->with('id_paciente', $id_paciente);
+    }
+
+    public function ficha_informe($id_paciente) {
+        return view('Pacientes.ficha.informe')->with('id_paciente', $id_paciente);
     }
 
     public function get_paciente(Request $request) {
@@ -74,7 +79,7 @@ class pacientesController extends Controller {
         return response()->json(json_decode($paciente));
         //return "esta llegando el id = ".$request->id_paciente;
     }
-    
+
     private function validador($data){
         $retono="";
         $rules = array(

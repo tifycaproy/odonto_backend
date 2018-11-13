@@ -1078,7 +1078,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(12);
-module.exports = __webpack_require__(54);
+module.exports = __webpack_require__(57);
 
 
 /***/ }),
@@ -1109,6 +1109,7 @@ Vue.component('historia-clinica-medica', __webpack_require__(45));
 Vue.component('tipos-sangre', __webpack_require__(48));
 
 Vue.component('estados-cilives', __webpack_require__(51));
+Vue.component('odontologos', __webpack_require__(54));
 
 var app = new Vue({
   el: '#app'
@@ -45049,7 +45050,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         chequear_enfermedad: function chequear_enfermedad() {
             $.each(this.enfermedades_seleccionadas, function (idx, enfer) {
-                console.log(enfer.id_enfermedad);
+                //console.log(enfer.id_enfermedad);
                 //$("#div_check_enfermedades input[type=checkbox]").val().prop('checked', true);
                 $('#div_check_enfermedades input:checkbox[value=' + enfer.id_enfermedad + ']').prop("checked", "checked");
             });
@@ -46413,6 +46414,158 @@ if (false) {
 
 /***/ }),
 /* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(55)
+/* template */
+var __vue_template__ = __webpack_require__(56)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Odontologos.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7df0d0b2", Component.options)
+  } else {
+    hotAPI.reload("data-v-7df0d0b2", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 55 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+		return {
+			comp_odontologo: '',
+			odontologos: []
+		};
+	},
+
+	created: function created() {
+		this.get_odontologos();
+	},
+	mounted: function mounted() {
+		this.created();
+	},
+
+	methods: {
+		get_odontologos: function get_odontologos() {
+			var _this = this;
+
+			var url = '/configuracionsistema/get_odontologos';
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(url).then(function (response) {
+				_this.odontologos = response.data;
+				//this.comp_tipo_sangre=;
+			});
+		}
+	}
+});
+
+/***/ }),
+/* 56 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "select",
+    {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.comp_odontologo,
+          expression: "comp_odontologo"
+        }
+      ],
+      staticClass: "form-control",
+      attrs: { id: "id_odontologo", name: "id_odontologo" },
+      on: {
+        change: function($event) {
+          var $$selectedVal = Array.prototype.filter
+            .call($event.target.options, function(o) {
+              return o.selected
+            })
+            .map(function(o) {
+              var val = "_value" in o ? o._value : o.value
+              return val
+            })
+          _vm.comp_odontologo = $event.target.multiple
+            ? $$selectedVal
+            : $$selectedVal[0]
+        }
+      }
+    },
+    [
+      _c("option", { attrs: { value: "" } }, [_vm._v("Seleccione...")]),
+      _vm._v(" "),
+      _vm._l(_vm.odontologos, function(compo) {
+        return _c("option", { domProps: { value: compo.id_odontologo } }, [
+          _vm._v(_vm._s(compo.name))
+        ])
+      })
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7df0d0b2", module.exports)
+  }
+}
+
+/***/ }),
+/* 57 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
