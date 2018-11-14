@@ -1,6 +1,7 @@
 @extends('Pacientes.ficha.layout_ficha')
 
 @section('content-ficha')
+
 <div class="col-12  ">
   <div class="card">
     <div class="card-body ">
@@ -13,6 +14,7 @@
       </div>
       
       <hr>
+      <!--
       <form action="" method="" accept-charset="utf-8">
            <div class="row col d-flex justify-content-end">
               <div class="form-group col-12 col-sm-3 ">
@@ -33,58 +35,40 @@
               </div>
            </div>
       </form>
+      -->
       <div class="table-responsive">
         <table class="table">
             <thead class="">
                 <tr class="table-secondary">
+                <th>Acciones</th>
                   <th>Fecha</th>
-                  <th>N° de Control</th>
+                  <th>Nombre Tratamiento</th>
                   <th>Odontólogo</th>
-                  
-                  <th>Acciones</th>
+
                 </tr>
             </thead>
             <tbody class="">
-              <tr>
-                <td>Fecha</td>
-                <td>N° de Control</td>
-                <td>Odontólogo</td>
+               @forelse ($tratamientos as $tratamiento)
+              <tr id="tr_{{$tratamiento->id_tratamiento}}">
                 <td>
                   <div class="btn-group" role="group" aria-label="Basic example">
                     <a href="{{ route('paciente.ficha.basico',3) }}" class="btn btn-icons btn-inverse-secondary"><i class="fa fa-eye"></i></a>
                     <a class="btn btn-icons btn-inverse-secondary"><i class="fa fa-file"></i></a>
-                    <a class="btn btn-icons btn-inverse-secondary"><i class="fa fa-at"></i></a>
-                    <a class="btn btn-icons btn-inverse-secondary"><i class="fa fa-times"></i></a>
+                    <!-- <a class="btn btn-icons btn-inverse-secondary"><i class="fa fa-at"></i></a>  -->
+                    <a class="btn btn-icons btn-inverse-secondary" title="Eliminar" onclick="fun_pregunta_tratamiento({{$tratamiento->id_tratamiento}},'tr_')"><i class="fa fa-times"></i></a>
                   </div>
                 </td>
+                <td>{{ $tratamiento->fecha_creado }}</td>
+                <td>{{ $tratamiento->nombre_tratamiento }}</td>
+                <td>{{ $tratamiento->name }}</td>
+
               </tr>
-              <tr>
-                <td>Fecha</td>
-                <td>N° de Control</td>
-                <td>Odontólogo</td>
-                <td>
-                  <div class="btn-group" role="group" aria-label="Basic example">
-                    <a href="{{ route('paciente.ficha.basico',3) }}" class="btn btn-icons btn-inverse-secondary"><i class="fa fa-eye"></i></a>
-                    <a class="btn btn-icons btn-inverse-secondary"><i class="fa fa-file"></i></a>
-                    <a class="btn btn-icons btn-inverse-secondary"><i class="fa fa-at"></i></a>
-                    <a class="btn btn-icons btn-inverse-secondary"><i class="fa fa-times"></i></a>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>Fecha</td>
-                <td>N° de Control</td>
-                <td>Odontólogo</td>
-                <td>
-                  <div class="btn-group" role="group" aria-label="Basic example">
-                    <a href="{{ route('paciente.ficha.basico',3) }}" class="btn btn-icons btn-inverse-secondary"><i class="fa fa-eye"></i></a>
-                    <a class="btn btn-icons btn-inverse-secondary"><i class="fa fa-file"></i></a>
-                    <a class="btn btn-icons btn-inverse-secondary"><i class="fa fa-at"></i></a>
-                    <a class="btn btn-icons btn-inverse-secondary"><i class="fa fa-times"></i></a>
-                  </div>
-                </td>
-              </tr>
-              
+
+                    @empty
+                    <p>No Cuenta con Tratamientos este paciente</p>
+                    @endforelse
+
+
             </tbody>
           </table>
       </div>
@@ -93,3 +77,6 @@
   </div>
 </div>
 @endsection
+@push('scripts')
+<script src="{{asset('js/tratamientos.js')}}"></script>
+@endpush

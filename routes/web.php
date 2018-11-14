@@ -48,7 +48,7 @@ Route::get('pacientes/ficha/{id_paciente}/basico', [
         'as'   => 'paciente.ficha.basico'
  ]);
 
-Route::get('pacientes/ficha/{id}/tratamientos', [
+Route::get('pacientes/ficha/{id_paciente}/tratamientos', [
         'uses' => 'Pacientes\pacientesController@ficha_tratamientos',
         'as'   => 'paciente.ficha.tratamientos'
  ]);
@@ -58,15 +58,15 @@ Route::get('pacientes/ficha/{id}/tratamientos', [
         'as'   => 'paciente.ficha.create-tratamientos'
  ]);
 
-Route::get('pacientes/ficha/{id}/citas', [
+Route::get('pacientes/ficha/{id_paciente}/citas', [
         'uses' => 'Pacientes\pacientesController@ficha_citas',
         'as'   => 'paciente.ficha.citas'
  ]);
-Route::get('pacientes/ficha/{id}/recipes', [
+Route::get('pacientes/ficha/{id_paciente}/recipes', [
         'uses' => 'Pacientes\pacientesController@ficha_recipes',
         'as'   => 'paciente.ficha.recipes'
  ]);
-Route::get('pacientes/ficha/{id}/informe', [
+Route::get('pacientes/ficha/{id_paciente}/informe', [
         'uses' => 'Pacientes\pacientesController@ficha_informe',
         'as'   => 'paciente.ficha.informe'
  ]);
@@ -87,6 +87,8 @@ Route::get('tratamientos', 'Tratamientos\tratamientosController@index')->name('t
 Route::post('tratamientos', 'Tratamientos\tratamientosController@store');
 Route::get('tratamientos/get/{id_tratamiento}', 'Tratamientos\tratamientosController@get_tratamiento');
 Route::put('tratamientos/{id_tratamiento}', 'Tratamientos\tratamientosController@update');
+Route::post('tratamientos/eliminar/{id_tratamiento}', 'Tratamientos\tratamientosController@destroy');
+Route::post('pacientes/ficha/{id_paciente}/tratamientos/eliminar/{id_tratamiento}', 'Tratamientos\tratamientosController@destroy');
 
 
 

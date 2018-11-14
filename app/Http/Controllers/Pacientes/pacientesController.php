@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Pacientes;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Tratamientos\tratamientosController;
 use Illuminate\Support\Facades\Validator;
 use App\Paciente;
 use Redirect;
@@ -55,7 +56,9 @@ class pacientesController extends Controller {
     }
 
     public function ficha_tratamientos($id_paciente) {
-        return view('Pacientes.ficha.tratamientos')->with('id_paciente', $id_paciente);
+        $Obj_tratamiento = new tratamientosController();
+        $tratamientos = $Obj_tratamiento->datos()->where("id_paciente","=",$id_paciente)->get();
+        return view('Pacientes.ficha.tratamientos')->with('tratamientos', $tratamientos)->with('id_paciente', $id_paciente);
     }
 
     public function ficha_tratamientos_cretate($id_paciente) {

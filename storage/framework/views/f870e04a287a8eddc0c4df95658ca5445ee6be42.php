@@ -88,9 +88,9 @@
   <script src="<?php echo e(asset('js/app.js')); ?>"></script>
 
   <script src="<?php echo e(asset('js/alertifyjs/alertify.js')); ?>"></script>
-
+  
   <?php echo $__env->make('alertify::alertify', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="<?php echo e(asset('js/axios.min.js')); ?>"></script>
   <?php echo $__env->yieldPushContent('scripts'); ?>
 </body>
 

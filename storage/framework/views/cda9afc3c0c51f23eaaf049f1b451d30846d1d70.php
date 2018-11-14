@@ -2,38 +2,15 @@
 <?php $__env->startSection('content-ficha'); ?>
 <div class="col-12  ">
   <div class="card">
-    <div class="card-body ">
+    <div class="card-body" id="tratamientos">
 
       <div class="d-flex justify-content-between align-items-center">
         <h4>Crear un Tratamientos</h4>
       </div>
       
       <hr>
-      <form action="" method="" accept-charset="utf-8">
-
-
-           <div class="row col d-flex justify-content-end">
-              <div class="form-group col-12 col-sm-3 ">
-                <label for="">Nombre Tratamiento</label>
-                <input type="text" class="form-control  form-control-sm" name="nombre_tratamiento" placeholder="...">
-              </div>
-              <div class="form-group col-12 col-sm-3 ">
-                <label for="">Fecha</label>
-                <input type="date" class="form-control form-control-sm" name="fecha_creado" placeholder="...">
-              </div>
-              <div class="form-group col-12 col-sm-4">
-                <label for="id_odontologo">Odontologo</label>
-                <odontologos></odontologos>
-              </div>
-
-                 <button class="btn btn-sm btn-success" type="submit">Guardar</button>
-              <div class="form-group col-12 col-sm-4">
-              </div>
-
-            </div>
-
-      </form>
-
+      
+      <tratamientos accion="insertar" paciente="<?php echo e($id_paciente); ?>"></tratamientos>
 
       <!--
       <div class="table-responsive">
@@ -98,5 +75,10 @@
   </div>
 </div>
 <?php $__env->stopSection(); ?>
+
+<?php $__env->startPush('scripts'); ?>
+<meta name="_token" content="<?php echo csrf_token(); ?>" />
+<script src="<?php echo e(asset('js/tratamientos.js')); ?>"></script>
+<?php $__env->stopPush(); ?>
 
 <?php echo $__env->make('Pacientes.ficha.layout_ficha', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

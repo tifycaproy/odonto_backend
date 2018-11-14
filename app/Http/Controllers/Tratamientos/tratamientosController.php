@@ -6,11 +6,22 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use App\tratamientos;
+use Illuminate\Support\Facades\DB;
 
 class tratamientosController extends Controller
 {
-    public function index(){
-        return view('Tratamientos.index');
+    public function datos() {
+
+        return DB::table('tratamientos')
+                ->join('users', 'id', '=', 'id_odontologo');
+        //        ->where('id_status_paciente','=','1');
+        //->select('users.*', 'contacts.phone', 'orders.price')
+        //$pacientes = DB::select('SELECT * FROM pacientes JOIN sexos USING(id_sexo)');
+    }
+
+    public function index(Request $request){
+        $tratamientos = $this->datos()->where("id_paciente","=",$request->id_paciente)->get();
+        return view('Tratamientos.index')->with('tratamientos', $tratamientos);
     }
     private function validador($data){
         $retono="";
@@ -56,6 +67,14 @@ class tratamientosController extends Controller
             $tratamiento = tratamientos::find($request->id_tratamiento)->update($request->all());
             $retorna = response()->json(['success' => true, 'message' => 'Se actualizo el Tratamiento', 'tratamiento' => json_decode($tratamiento)], 200);
         }
+
+        return $retorna;
+    }
+
+    public function destroy(Request $request) {
+
+            $tratamiento = tratamientos::find($request->id_tratamiento)->delete();
+            $retorna = response()->json(['success' => true, 'message' => 'Se Elimino el Tratamiento', 'tratamiento' => json_decode($tratamiento)], 200);
 
         return $retorna;
     }
