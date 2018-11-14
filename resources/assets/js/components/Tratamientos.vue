@@ -59,6 +59,9 @@
                     get_tratamiento() {
                         this.id_tratamiento = this.tratamiento;
                         this.id_paciente = this.paciente;
+                        var d = new Date();
+                        this.fecha_creado = this.formatDateToString(d); //d.getDay() + "-" + d.getMonth() + "-" + d.getYear();
+                        console.log(this.fecha_creado);
                         //variables de majeno del DOM
                         this.boton = $('#btn_crear_tratamiento');
                         this.text_boton = this.boton.html();
@@ -113,6 +116,7 @@
                                         this.id_paciente = this.paciente = response.data.tratamiento.id_paciente;
                                         this.accion = "actualizar";
                                         alertify.success(response.data.message);
+                                        fun_llamado_externo_componente(response.data.tratamiento);
                                     } else {
                                         $.each(response.data.message, function (idx, mes) {
                                             alertify.error(mes[0]);
@@ -150,6 +154,17 @@
                         } else {
                             this.boton.html(this.text_boton).prop("disabled", false);
                         }
+                    },
+                    formatDateToString(date) {
+                        // 01, 02, 03, ... 29, 30, 31
+                        var dd = (date.getDate() < 10 ? '0' : '') + date.getDate();
+                        // 01, 02, 03, ... 10, 11, 12
+                        var MM = ((date.getMonth() + 1) < 10 ? '0' : '') + (date.getMonth() + 1);
+                        // 1970, 1971, ... 2015, 2016, ...
+                        var yyyy = date.getFullYear();
+
+                        // create the format you want
+                        return (yyyy + "-" + MM + "-" + dd);
                     }
 
 
