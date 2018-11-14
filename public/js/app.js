@@ -1078,7 +1078,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(12);
-module.exports = __webpack_require__(60);
+module.exports = __webpack_require__(63);
 
 
 /***/ }),
@@ -1111,6 +1111,7 @@ Vue.component('tipos-sangre', __webpack_require__(48));
 Vue.component('estados-cilives', __webpack_require__(51));
 Vue.component('odontologos', __webpack_require__(54));
 Vue.component('tratamientos', __webpack_require__(57));
+Vue.component('tratamientos-categorias', __webpack_require__(60));
 
 var app = new Vue({
   el: '#app'
@@ -47008,6 +47009,296 @@ if (false) {
 
 /***/ }),
 /* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(61)
+/* template */
+var __vue_template__ = __webpack_require__(62)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/TratamientosCategorias.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2d05a3cc", Component.options)
+  } else {
+    hotAPI.reload("data-v-2d05a3cc", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 61 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['accion', 'tratamiento'],
+    data: function data() {
+        return {
+            id_tratamiento_categoria: "",
+            tratamiento_categoria: "",
+            //variables de control
+            cargando_datos: false,
+            //accion_ejecutar:"crear",
+            boton: "",
+            text_boton: ""
+        };
+    },
+    mounted: function mounted() {
+        this.init();
+    },
+
+    methods: {
+        get_tratamiento: function get_tratamiento() {
+            var _this = this;
+
+            this.id_tratamiento_categoria = this.tratamiento;
+            //this.tratamiento_categoria = this.paciente;
+            console.log(this.fecha_creado);
+            //variables de majeno del DOM
+            this.boton = $('#btn_crear_tratamiento');
+            this.text_boton = this.boton.html();
+
+            if (this.accion == "actualizar") {
+                __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/tratamientos_categorias/get/' + this.id_tratamiento_categoria).then(function (response) {
+
+                    _this.id_tratamiento_categoria = response.data.id_tratamiento_categoria;
+                    _this.tratamiento_categoria = response.data.tratamiento_categoria;
+                });
+            }
+        },
+        init: function init() {
+            this.get_tratamiento();
+        },
+        enviar: function enviar() {
+            if (this.accion == "insertar") {
+                this.insertar();
+            } else {
+                this.actualizar();
+            }
+        },
+        insertar: function insertar() {
+            var _this2 = this;
+
+            this.manejo_boton(true);
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/tratamientos_categorias', $("#frm_tratamientos_categorias").serialize()).then(function (response) {
+                //console.log(response.data);
+                if (response.data.success) {
+                    // console.log(response.data.paciente);
+                    _this2.id_tratamiento_categoria = _this2.tratamiento = response.data.tratamiento.id_tratamiento_categoria;
+                    _this2.tratamiento_categoria = _this2.paciente = response.data.tratamiento.tratamiento_categoria;
+                    _this2.accion = "actualizar";
+                    alertify.success(response.data.message);
+                    //fun_llamado_externo_componente(response.data.tratamiento);
+                } else {
+                    $.each(response.data.message, function (idx, mes) {
+                        alertify.error(mes[0]);
+                    });
+                }
+            }).catch(function (er) {
+                alertify.error('Error inesperado: ' + er);
+            }).finally(function () {
+                _this2.manejo_boton(false);
+            });
+        },
+
+        actualizar: function actualizar() {
+            var _this3 = this;
+
+            this.manejo_boton(true);
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.put('/tratamientos_categorias/' + this.id_tratamiento_categoria, $("#frm_tratamientos_categorias").serialize()).then(function (response) {
+                console.log(response.data);
+                if (response.data.success) {
+                    alertify.success(response.data.message);
+                } else {
+                    $.each(response.data.message, function (idx, mes) {
+                        alertify.error(mes[0]);
+                    });
+                }
+            }).catch(function (er) {
+                alertify.error('Error inesperado: ' + er);
+            }).finally(function () {
+                _this3.manejo_boton(false);
+            });
+        },
+        manejo_boton: function manejo_boton(que) {
+            if (que) {
+                this.boton.html('<i class="fa fa-spinner fa-spin"></i> Espere').prop("disabled", true);
+            } else {
+                this.boton.html(this.text_boton).prop("disabled", false);
+            }
+        }
+    }
+});
+
+/***/ }),
+/* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form",
+    {
+      attrs: { id: "frm_tratamientos_categorias" },
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.enviar($event)
+        }
+      }
+    },
+    [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.id_tratamiento_categoria,
+            expression: "id_tratamiento_categoria"
+          }
+        ],
+        attrs: {
+          type: "hidden",
+          name: "id_tratamiento_categoria",
+          id: "id_tratamiento_categoria",
+          value: ""
+        },
+        domProps: { value: _vm.id_tratamiento_categoria },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.id_tratamiento_categoria = $event.target.value
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "form-group col-12 col-sm-8 " }, [
+          _c("label", { attrs: { for: "" } }, [
+            _vm._v("Categorias Tratamiento")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.tratamiento_categoria,
+                expression: "tratamiento_categoria"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              name: "tratamiento_categoria",
+              placeholder: "..."
+            },
+            domProps: { value: _vm.tratamiento_categoria },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.tratamiento_categoria = $event.target.value
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _vm._m(0)
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-12 col-sm-4" }, [
+      _c("br"),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-lg btn-success",
+          attrs: { id: "btn_crear_tratamiento" }
+        },
+        [_vm._v("Guardar")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2d05a3cc", module.exports)
+  }
+}
+
+/***/ }),
+/* 63 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

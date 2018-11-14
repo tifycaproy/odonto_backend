@@ -90,8 +90,14 @@ Route::put('tratamientos/{id_tratamiento}', 'Tratamientos\tratamientosController
 Route::post('tratamientos/eliminar/{id_tratamiento}', 'Tratamientos\tratamientosController@destroy');
 Route::post('pacientes/ficha/{id_paciente}/tratamientos/eliminar/{id_tratamiento}', 'Tratamientos\tratamientosController@destroy');
 
-
-
+////////////////
+// ADMINISTRACION
+Route::get('tratamientos_categorias', 'Administracion\tratamientos_categoriasController@index')->name('tratamientos_categorias');
+Route::post('tratamientos_categorias', 'Administracion\tratamientos_categoriasController@store');
+Route::put('tratamientos_categorias/{id_tratamiento_categoria}', 'Administracion\tratamientos_categoriasController@update');
+Route::post('tratamientos_categorias/eliminar/{id_tratamiento_categoria}', 'Administracion\tratamientos_categoriasController@destroy');
+Route::get('tratamientos_categorias/create', 'Administracion\tratamientos_categoriasController@create')->name('tratamientos_categorias/create');
+Route::get('tratamientos_categorias/get/{id_tratamiento_categoria}', 'Administracion\tratamientos_categoriasController@get_tratamiento_categoria')->name('tratamientos_categorias/create');
 
 // ////////////
 // CONFIGURAION SISTEMA
