@@ -24,7 +24,7 @@
 </head>
 
 <body>
-  <div id="app" class="container-scroller">
+  <div class="container-scroller">
 
     <!-- partial:partials/_navbar.html -->
     @include('layouts.nav')
@@ -91,7 +91,7 @@
   <script src="{{ asset('js/app.js') }}"></script>
 
   <script src="{{ asset('js/alertifyjs/alertify.js') }}"></script>
-  
+
   @include('alertify::alertify')
   <script src="{{ asset('js/axios.min.js') }}"></script>
   @stack('scripts')

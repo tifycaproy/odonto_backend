@@ -48,6 +48,26 @@
               <i class="menu-icon mdi mdi-table"></i>
               <span class="menu-title">Caja</span>
             </a>
+          </li> 
+         <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <i class="menu-icon mdi mdi-content-copy"></i>
+              <span class="menu-title">Administración</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="<?php echo e(route('tratamientos_categorias')); ?>">Categoria Tratamientos<a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Tratamientos Disponibles</a>
+                </li> <!--
+                <li class="nav-item">
+                  <a class="nav-link" href="#">---</a>
+                </li> -->
+              </ul>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
@@ -69,6 +89,5 @@
               </ul>
             </div>
           </li>
-        
         </ul>
       </nav>

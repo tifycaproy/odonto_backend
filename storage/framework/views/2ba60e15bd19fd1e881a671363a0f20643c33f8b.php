@@ -1,6 +1,6 @@
 <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
-        <a class="navbar-brand brand-logo p-2" href="index.html">
+        <a class="navbar-brand brand-logo p-2 col-4" href="#">
           <img width="" src="<?php echo e(asset('images/logo.jpg')); ?>" alt="logo" />
         </a>
         
@@ -10,7 +10,7 @@
           
           
           
-        </ul>
+        </ul> 
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item dropdown">
             <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">

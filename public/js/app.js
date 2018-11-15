@@ -1078,7 +1078,8 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(12);
-module.exports = __webpack_require__(63);
+__webpack_require__(63);
+module.exports = __webpack_require__(64);
 
 
 /***/ }),
@@ -47143,7 +47144,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     _this2.tratamiento_categoria = _this2.paciente = response.data.tratamiento.tratamiento_categoria;
                     _this2.accion = "actualizar";
                     alertify.success(response.data.message);
-                    //fun_llamado_externo_componente(response.data.tratamiento);
+                    fun_llamado_externo_componente(response.data.tratamiento);
                 } else {
                     $.each(response.data.message, function (idx, mes) {
                         alertify.error(mes[0]);
@@ -47299,6 +47300,177 @@ if (false) {
 
 /***/ }),
 /* 63 */
+/***/ (function(module, exports) {
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+//Vue.http.headers.common['X-CSRF-TOKEN'] = $("#token").attr("value");
+
+new Vue({
+
+    el: '#modulo_categorias',
+
+    data: {
+        tratamientos_categorias: [],
+        pagination: {
+            total: 0,
+            per_page: 2,
+            from: 1,
+            to: 0,
+            current_page: 1
+        },
+        offset: 4,
+        formErrors: {},
+        accion: "insertar",
+        registro: { 'id_tratamiento_categoria': '', 'tratamiento_categoria': '' },
+        fillItem: { 'id_tratamiento_categoria': '', 'tratamiento_categoria': '' }, //pasar el id para actualiazr y elimnar
+        //accion_ejecutar:"crear",
+        boton: "",
+        text_boton: ""
+    },
+
+    computed: {
+        isActived: function isActived() {
+            return this.pagination.current_page;
+        },
+        pagesNumber: function pagesNumber() {
+            if (!this.pagination.to) {
+                return [];
+            }
+            var from = this.pagination.current_page - this.offset;
+            if (from < 1) {
+                from = 1;
+            }
+            var to = from + this.offset * 2;
+            if (to >= this.pagination.last_page) {
+                to = this.pagination.last_page;
+            }
+            var pagesArray = [];
+            while (from <= to) {
+                pagesArray.push(from);
+                from++;
+            }
+            return pagesArray;
+        }
+    },
+
+    ready: function ready() {
+        this.getRegistros(this.pagination.current_page);
+    },
+    mounted: function mounted() {
+        this.getRegistros(this.pagination.current_page);
+    },
+
+    methods: {
+
+        enviar: function enviar() {
+            if (this.accion == "insertar") {
+                this.insertar();
+            } else {
+                this.actualizar();
+            }
+        },
+        arranque: function arranque() {
+            this.registro.id_tratamiento_categoria = "";
+            this.registro.tratamiento_categoria = "";
+            this.accion = "insertar";
+            this.changePage(this.pagination.current_page);
+        },
+
+        getRegistros: function getRegistros(page) {
+            var _this = this;
+
+            //alert("esto se monto");
+            axios.get('/tratamientos_categorias_registro?page=' + page).then(function (response) {
+                _this.tratamientos_categorias = response.data.registos.data;
+                _this.pagination = response.data.pagination;
+                // this.$set('pagination', response.data.pagination);
+                // alertify.success('Cargados completos');
+            });
+        },
+
+        insertar: function insertar() {
+            var _this2 = this;
+
+            axios.post('/tratamientos_categorias_registro', this.registro).then(function (response) {
+                _this2.changePage(_this2.pagination.current_page);
+                if (response.data.success) {
+                    _this2.arranque();
+                    alertify.success(response.data.message);
+                } else {
+                    $.each(response.data.message, function (idx, mes) {
+                        alertify.error(mes[0]);
+                    });
+                }
+            }, function (response) {
+                _this2.formErrors = response.data;
+            });
+        },
+
+        editar: function editar(registrooEditar) {
+            this.registro = registrooEditar;
+            this.accion = "actualizar";
+        },
+
+        actualizar: function actualizar() {
+            var _this3 = this;
+
+            // var input = this.fillItem;
+            axios.put('/tratamientos_categorias_registro/' + this.registro.id_tratamiento_categoria, this.registro).then(function (response) {
+                if (response.data.success) {
+                    alertify.success(response.data.message);
+                    _this3.arranque();
+                } else {
+                    $.each(response.data.message, function (idx, mes) {
+                        alertify.error(mes[0]);
+                    });
+                }
+            }, function (response) {
+                _this3.formErrorsUpdate = response.data;
+            });
+        },
+
+        preguntaEliminar: function preguntaEliminar(registro) {
+            var Obj = this;
+            alertify.confirm('Confirmacion de Borrado', 'Quiere borrar esta Categoria de tratamiento?', function (bot) {
+                Obj.eliminar(registro);
+                // console.log(registro);
+            }, function () {
+                alertify.error('Acccion Cancelada');
+            });
+        },
+        eliminar: function eliminar(registro) {
+            var _this4 = this;
+
+            var tr = $("#tabla_registro " + registro.id_tratamiento_categoria);
+            axios.delete('/tratamientos_categorias_registro/' + registro.id_tratamiento_categoria).then(function (response) {
+                if (response.data.success) {
+                    tr.remove();
+                    alertify.success(response.data.message);
+                    _this4.arranque();
+                } else {
+                    $.each(response.data.message, function (idx, mes) {
+                        alertify.error(mes[0]);
+                    });
+                }
+            });
+        },
+
+        changePage: function changePage(page) {
+            this.pagination.current_page = page;
+            this.getRegistros(page);
+        }
+
+    }
+
+});
+
+/***/ }),
+/* 64 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

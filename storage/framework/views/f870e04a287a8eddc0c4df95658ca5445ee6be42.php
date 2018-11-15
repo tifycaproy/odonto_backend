@@ -23,7 +23,7 @@
 </head>
 
 <body>
-  <div id="app" class="container-scroller">
+  <div class="container-scroller">
 
     <!-- partial:partials/_navbar.html -->
     <?php echo $__env->make('layouts.nav', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
@@ -88,7 +88,7 @@
   <script src="<?php echo e(asset('js/app.js')); ?>"></script>
 
   <script src="<?php echo e(asset('js/alertifyjs/alertify.js')); ?>"></script>
-  
+
   <?php echo $__env->make('alertify::alertify', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
   <script src="<?php echo e(asset('js/axios.min.js')); ?>"></script>
   <?php echo $__env->yieldPushContent('scripts'); ?>

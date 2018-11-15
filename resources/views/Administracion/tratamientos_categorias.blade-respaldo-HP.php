@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('class-back', '') @section('link-back',url('tratamientos_categorias'))
+@section('class-back', '') @section('link-back',url('home'))
 @section('class-new', 'd-none') @section('link-new',url('#'))
 @section('titulo', 'Categorias Tramamientos')
 
@@ -8,12 +8,9 @@
 <div class="col-12  grid-margin stretch-card">
     <div class="card">
         <div class="card-body align-content-center">
+           <div id="div_componente_tratamiento">
             <tratamientos-categorias accion="insertar"></tratamientos-categorias>
-        </div>
-    </div>
-
-    <div class="card">
-     <div class="card-body">
+            </div>
      {{-- TABLE --}}
             <div class="table-responsive">
                 <table class="table">
@@ -35,6 +32,7 @@
                                     <a class="btn btn-icons btn-inverse-secondary"><i class="fa fa-file" title="Mostrar PDF"></i></a>
                                     <a class="btn btn-icons btn-inverse-secondary"><i class="fa fa-at" title="Enviar correo"></i></a>
                                     -->
+                                    <a class="btn btn-icons btn-inverse-secondary" href="#" onclick="fun_actulizar_tratamientos_categorias({{$categoria->id_tratamiento_categoria}})"><i class="fa fa-eye" title="Ver Categoria"></i></a>
                                     <a class="btn btn-icons btn-inverse-secondary" href="#" onclick="fun_pregunta_tratamientos_categorias({{$categoria->id_tratamiento_categoria}},'tr_')"><i class="fa fa-times" title="Eliminar Paciente"></i></a>
                                 </div>
                             </td>
@@ -60,3 +58,7 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script src="{{asset('js/tratamientos_categorias.js')}}"></script>
+@endpush

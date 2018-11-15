@@ -18,12 +18,32 @@ class tratamientos_categoriasController extends Controller {
     }
     
     public function index() {
-        $tratamientos_categorias = $this->datos()->paginate(15);
-        return view('Administracion.tratamientos_categorias')->with('tratamientos_categorias', $tratamientos_categorias);
+        //$tratamientos_categorias = $this->datos()->paginate(15);
+        //return view('Administracion.tratamientos_categorias')->with('tratamientos_categorias', $tratamientos_categorias);
+
+        $tratamientos_categorias = tratamientos_categorias::paginate(5);
+
+        $response = [
+            'pagination' => [
+                'total' => $tratamientos_categorias->total(),
+                'per_page' => $tratamientos_categorias->perPage(),
+                'current_page' => $tratamientos_categorias->currentPage(),
+                'last_page' => $tratamientos_categorias->lastPage(),
+                'from' => $tratamientos_categorias->firstItem(),
+                'to' => $tratamientos_categorias->lastItem()
+            ],
+            'registos' => $tratamientos_categorias
+        ];
+
+        return response()->json($response);
     }
     
     public function create() {
-        return view('Administracion.tratamientos_categorias_create');
+        return view('Administracion.tratamientos_categorias');
+    }
+
+    public function show() {
+        return $this->create();
     }
     
     private function validador($data){
@@ -56,7 +76,7 @@ class tratamientos_categoriasController extends Controller {
         } else {
 
             $tratamientos_categorias = tratamientos_categorias::create($request->all());
-            $retorna = response()->json(['success' => true, 'message' => 'Creado la Categoria del Tratamiento', 'tratamiento' => json_decode($tratamientos_categorias)], 200);
+            $retorna = response()->json(['success' => true, 'message' => 'Creado la Categoria del Tratamiento', 'registro' => json_decode($tratamientos_categorias)], 200);
         }
 
         return $retorna;
@@ -68,15 +88,17 @@ class tratamientos_categoriasController extends Controller {
             $retorna = response()->json(['success' => false, 'message' => json_decode($valido)], 200);
         } else {
             $tratamientos_categorias = tratamientos_categorias::find($request->id_tratamiento_categoria)->update($request->all());
-            $retorna = response()->json(['success' => true, 'message' => 'Se actualizo la Categoria del Tratamiento', 'tratamiento' => json_decode($tratamientos_categorias)], 200);
+            $retorna = response()->json(['success' => true, 'message' => 'Se actualizo la Categoria del Tratamiento', 'registro' => json_decode($tratamientos_categorias)], 200);
         }
 
         return $retorna;
     }
     
-    public function eliminar(Request $request) {
-        $tratamientos_categorias = tratamientos_categorias::find($request->id_tratamiento_categoria)->delete();
-        return response()->json(['success' => true, 'message' => 'Se Elimino la Categoria', 'tratamiento' => json_decode($tratamientos_categorias)], 200);
+    public function destroy($id_tratamiento_categoria) {
+         //       return dd($request);
+        //return dd($request);
+        $tratamientos_categorias = tratamientos_categorias::destroy($id_tratamiento_categoria);
+        return response()->json(['success' => true, 'message' => 'Se Elimino la Categoria', 'registro' => json_decode($tratamientos_categorias)], 200);
     }
 
 }

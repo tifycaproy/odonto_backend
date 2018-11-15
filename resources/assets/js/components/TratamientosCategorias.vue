@@ -80,7 +80,7 @@
                                         this.tratamiento_categoria = this.paciente = response.data.tratamiento.tratamiento_categoria;
                                         this.accion = "actualizar";
                                         alertify.success(response.data.message);
-                                        //fun_llamado_externo_componente(response.data.tratamiento);
+                                        fun_llamado_externo_componente(response.data.tratamiento);
                                     } else {
                                         $.each(response.data.message, function (idx, mes) {
                                             alertify.error(mes[0]);

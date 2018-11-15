@@ -1,10 +1,8 @@
-@extends('layouts.layout')
+<?php $__env->startSection('class-back', ''); ?> <?php $__env->startSection('link-back',url('home')); ?>
+<?php $__env->startSection('class-new', 'd-none'); ?> <?php $__env->startSection('link-new',url('#')); ?>
+<?php $__env->startSection('titulo', 'Categorias Tratamientos'); ?>
 
-@section('class-back', '') @section('link-back',url('home'))
-@section('class-new', 'd-none') @section('link-new',url('#'))
-@section('titulo', 'Categorias Tratamientos')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <?php
     #$tratamientos_categorias
     #https://benjaminhuete.gitbooks.io/vuejs/ejemplo-usando-vue.html
@@ -33,7 +31,7 @@
             </form>
 
 
-            {{-- TABLE --}}
+            
             <div class="table-responsive">
                 <table class="table">
                     <thead class="">
@@ -58,7 +56,7 @@
                                     <a class="btn btn-icons btn-inverse-secondary" href="#" @click.prevent="preguntaEliminar(categoria)"><i class="fa fa-times" title="Eliminar Paciente"></i></a>
                                 </div>
                             </td>
-                            <td>@{{categoria.id_tratamiento_categoria}} @{{categoria.tratamiento_categoria}}</td>
+                            <td>{{categoria.id_tratamiento_categoria}} {{categoria.tratamiento_categoria}}</td>
 
                         </tr>
 
@@ -68,7 +66,7 @@
 
 
             </div>
-            {{--  --}}
+            
                     <!-- Pagination -->
         <nav>
             <ul class="btn-group">
@@ -81,7 +79,7 @@
                 <li v-for="page in pagesNumber"        class="btn btn-icons btn-inverse-primary"
                     v-bind:class="[ page == isActived ? 'active' : '']">
                     <a href="#"
-                       @click.prevent="changePage(page)">@{{ page }}</a>
+                       @click.prevent="changePage(page)">{{ page }}</a>
                 </li>
                 <li v-if="pagination.current_page < pagination.last_page" class="btn btn-icons btn-inverse-primary">
                     <a href="#" aria-label="Next"
@@ -96,5 +94,7 @@
         </div>
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
+
+<?php echo $__env->make('layouts.layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
