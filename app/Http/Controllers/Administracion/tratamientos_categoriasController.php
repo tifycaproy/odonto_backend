@@ -13,15 +13,15 @@ class tratamientos_categoriasController extends Controller {
     private function datos() {
 
         return DB::table('tratamientos_categorias');
-        //->select('users.*', 'contacts.phone', 'orders.price')
+        
         //$pacientes = DB::select('SELECT * FROM pacientes JOIN sexos USING(id_sexo)');
     }
-    
+
     public function index() {
         //$tratamientos_categorias = $this->datos()->paginate(15);
         //return view('Administracion.tratamientos_categorias')->with('tratamientos_categorias', $tratamientos_categorias);
 
-        $tratamientos_categorias = tratamientos_categorias::paginate(5);
+        $tratamientos_categorias = $this->datos()->paginate(5);
 
         $response = [
             'pagination' => [
@@ -37,7 +37,7 @@ class tratamientos_categoriasController extends Controller {
 
         return response()->json($response);
     }
-    
+
     public function create() {
         return view('Administracion.tratamientos_categorias');
     }
@@ -45,7 +45,7 @@ class tratamientos_categoriasController extends Controller {
     public function show() {
         return $this->create();
     }
-    
+
     private function validador($data){
         $retono="";
         $rules = array(
@@ -63,11 +63,12 @@ class tratamientos_categoriasController extends Controller {
                 
         return $retono;
     }
-    
-    function get_tratamiento_categoria($id){
-       return response()->json( $this->datos()->where('id_tratamiento_categoria','=',$id)->get());
+
+    function get_registro($id=""){
+        $registos = ($id) ? $this->datos()->where('id_tratamiento_categoria','=',$id)->get() : $this->datos()->get();
+       return response()->json( $registos);
     }
-    
+
     public function store(Request $request) {
 
        $valido = $this->validador($request->all());
@@ -93,7 +94,7 @@ class tratamientos_categoriasController extends Controller {
 
         return $retorna;
     }
-    
+
     public function destroy($id_tratamiento_categoria) {
          //       return dd($request);
         //return dd($request);

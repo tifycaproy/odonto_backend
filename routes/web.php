@@ -93,7 +93,12 @@ Route::post('pacientes/ficha/{id_paciente}/tratamientos/eliminar/{id_tratamiento
 ////////////////
 // ADMINISTRACION
 Route::get('tratamientos_categorias', 'Administracion\tratamientos_categoriasController@create')->name('tratamientos_categorias');
+Route::get('tratamientos_categorias/get_registros/{id_tratamiento}', 'Administracion\tratamientos_categoriasController@get_registro');
+Route::get('tratamientos_categorias/get_registros', 'Administracion\tratamientos_categoriasController@get_registro');
 Route::resource('tratamientos_categorias_registro','Administracion\tratamientos_categoriasController');
+Route::get('tratamientos_disponibles', 'Administracion\tratamientos_disponiblesController@create')->name('tratamientos_disponibles');
+Route::resource('trata_dispo_registo','Administracion\tratamientos_disponiblesController');
+
 
 #Route::post('tratamientos_categorias', 'Administracion\tratamientos_categoriasController@store');
 #Route::put('tratamientos_categorias/{id_tratamiento_categoria}', 'Administracion\tratamientos_categoriasController@update');

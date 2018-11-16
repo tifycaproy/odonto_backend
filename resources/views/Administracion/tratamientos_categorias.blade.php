@@ -49,11 +49,6 @@
                         <tr v-for="categoria in tratamientos_categorias" :id="categoria.id_tratamiento_categoria">
                             <td>
                                 <div class="btn-group" role="group">
-                                    <!--
-                                    <a href="" class="btn btn-icons btn-inverse-secondary" title="Ver Paciente"><i class="fa fa-eye"></i></a>
-                                    <a class="btn btn-icons btn-inverse-secondary"><i class="fa fa-file" title="Mostrar PDF"></i></a>
-                                    <a class="btn btn-icons btn-inverse-secondary"><i class="fa fa-at" title="Enviar correo"></i></a>
-                                    -->
                                     <a class="btn btn-icons btn-inverse-secondary" href="#" @click.prevent="editar(categoria)"><i class="fa fa-eye" title="Ver Categoria"></i></a>
                                     <a class="btn btn-icons btn-inverse-secondary" href="#" @click.prevent="preguntaEliminar(categoria)"><i class="fa fa-times" title="Eliminar Paciente"></i></a>
                                 </div>

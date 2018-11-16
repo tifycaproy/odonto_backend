@@ -5,28 +5,29 @@
 @section('titulo', 'Pacientes')
 
 @section('content')
+<div id="app">
 
-<datos-basicos-cliente accion="insertar"></datos-basicos-cliente>
-<!--  -->
-<historia-clinica-medica accion="insertar"></historia-clinica-medica>
+    <datos-basicos-cliente accion="insertar"></datos-basicos-cliente>
+    <!--  -->
+    <historia-clinica-medica accion="insertar"></historia-clinica-medica>
 
-<div class="col-12  grid-margin stretch-card">
-    <div class="card">
-        <div class="card-body">
-            <h4>Odontograma</h4>
-            <hr>
-            <div class="row text-center">
-                <img src="{{ asset('images/odontograma.png') }}" alt="">
+    <div class="col-12  grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4>Odontograma</h4>
+                <hr>
+                <div class="row text-center">
+                    <img src="{{ asset('images/odontograma.png') }}" alt="">
+                </div>
             </div>
         </div>
     </div>
+
+    <div class="col-12 text-center mt-5">
+        <input type="submit" class="btn btn-primary btn-lg" name="" value="Guardar">
+    </div>
+
 </div>
-
-<div class="col-12 text-center mt-5">
-    <input type="submit" class="btn btn-primary btn-lg" name="" value="Guardar">
-</div>
-
-
 
 @endsection
 

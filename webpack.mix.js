@@ -13,5 +13,6 @@ let mix = require('laravel-mix');
 
 mix.js('resources/assets/js/app.js', 'public/js/')
    .js('resources/assets/js/tratamientos_categorias.js', 'public/js/app.js')
+   .js('resources/assets/js/tratamientos_disponibles.js', 'public/js/app.js')
    .sass('resources/assets/sass/app.scss', 'public/css');
 //   .scripts(['resources/assets/js/tratamientos_categorias.js']) ;

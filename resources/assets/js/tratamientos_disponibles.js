@@ -8,10 +8,11 @@
 
 new Vue({
 
-  el: '#modulo_categorias',
+  el: '#modulo_tratamientos_disponibles',
 
   data: {
     tratamientos_categorias: [],
+    tratamientos_disponibles: [],
     pagination: {
         total: 0,
         per_page: 2,
@@ -22,7 +23,12 @@ new Vue({
     offset: 4,
     formErrors:{},
     accion:"insertar",
-    registro : {'id_tratamiento_categoria':'','tratamiento_categoria':''},
+    registro : {id_tratamiento_disponible:'',
+                tratamiento_disponible:'',
+                tratamiento_descripcion:'',
+                costo_tratamiento:'',
+                id_tratamiento_categoria:''
+                },
     //accion_ejecutar:"crear",
     boton: "",
     text_boton: ""
@@ -59,8 +65,9 @@ new Vue({
   },
   mounted(){
         this.getRegistros(this.pagination.current_page);
-        this.boton = $('#btn_crear_tratamiento');
+        this.boton = $('#btn_crear_tratamiento_disponible');
         this.text_boton = this.boton.html();
+        this.get_tratamientos_categorias();
   },
   methods : {
 
@@ -72,19 +79,28 @@ new Vue({
             }
         },
         arranque: function(){
+
+            this.registro.id_tratamiento_disponible="";
+            this.registro.tratamiento_disponible="";
+            this.registro.tratamiento_descripcion="";
+            this.registro.costo_tratamiento="";
             this.registro.id_tratamiento_categoria="";
-            this.registro.tratamiento_categoria="";
+
             this.accion="insertar";
             this.changePage(this.pagination.current_page);
 
         },
+        get_tratamientos_categorias() {
+              axios.get('/tratamientos_categorias/get_registros')
+                      .then((response) => {
+                          this.tratamientos_categorias = response.data;
+                      });
+        },
         getRegistros: function(page){
             //alert("esto se monto");
-            axios.get('/tratamientos_categorias_registro?page='+page).then((response) => {
-              this.tratamientos_categorias=response.data.registos.data;
+            axios.get('/trata_dispo_registo?page='+page).then((response) => {
+              this.tratamientos_disponibles=response.data.registos.data;
               this.pagination=response.data.pagination;
-              // this.$set('pagination', response.data.pagination);
-              // alertify.success('Cargados completos');
             });
         },
 
@@ -93,7 +109,7 @@ new Vue({
 
           this.manejo_boton(true);
 
-            axios.post('/tratamientos_categorias_registro',this.registro)
+            axios.post('/trata_dispo_registo',this.registro)
             .then((response) => {
               this.changePage(this.pagination.current_page);
                  if (response.data.success) {
@@ -114,14 +130,15 @@ new Vue({
 
         },
 
-      editar: function(registrooEditar){
-          this.registro = registrooEditar;
+      editar: function(registroEditar){
+          this.registro = registroEditar;
           this.accion="actualizar";
       },
 
       actualizar: function(){
        this.manejo_boton(true);
-        axios.put('/tratamientos_categorias_registro/'+this.registro.id_tratamiento_categoria,this.registro).then((response) => {
+        axios.put('/trata_dispo_registo/'+this.registro.id_tratamiento_disponible,this.registro)
+         .then((response) => {
                 if (response.data.success) {
                        alertify.success(response.data.message);
                        this.arranque();
@@ -131,15 +148,18 @@ new Vue({
                       });
                   }
 
-          }, (response) => {
-              this.formErrorsUpdate = response.data;
-          });
-          this.manejo_boton(false);
+          })
+            .catch((er) => {
+                alertify.error('Error inesperado: ' + er);
+            }).finally(() => {
+                this.manejo_boton(false);
+            });
+
       },
 
       preguntaEliminar: function(registro){
         var Obj = this;
-          alertify.confirm('Confirmacion de Borrado', 'Quiere borrar esta Categoria de tratamiento?', function (bot) {
+          alertify.confirm('Confirmacion de Borrado', 'Quiere borrar esta Tratamiento Disponible?', function (bot) {
                 Obj.eliminar(registro);
               // console.log(registro);
             }
@@ -148,8 +168,9 @@ new Vue({
             });
       },
       eliminar: function(registro){
-        var tr = $("#tabla_registro "+registro.id_tratamiento_categoria);
-        axios.delete('/tratamientos_categorias_registro/'+registro.id_tratamiento_categoria).then( (response) => {
+        var tr = $("#tabla_registro "+registro.id_tratamiento_disponible);
+        axios.delete('/trata_dispo_registo/'+registro.id_tratamiento_disponible)
+        .then( (response) => {
              if (response.data.success) {
                        tr.remove();
                        alertify.success(response.data.message);

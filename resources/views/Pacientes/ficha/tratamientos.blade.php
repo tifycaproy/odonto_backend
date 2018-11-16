@@ -44,48 +44,47 @@
   </form>
     -->
     <div class="table-responsive">
-                            <table class="table">
+       <table class="table">
             <thead class="">
-                <tr class="table-secondary">
+             <tr class="table-secondary">
                 <th>Acciones</th>
                   <th>Fecha</th>
                   <th>Nombre Tratamiento</th>
-                                                                            <th>Od                                                                                ontólogo</th>
-
-                                                                            </tr>
+                  <th>Odontólogo</th>
+              </tr>
             </thead>
-                                                                            <tbody class="">
-                                                                                    @forelse ($tratamientos as $tratamiento)
-                                                                                    <tr id="tr_{{$tratamiento->id_tratamiento}}">
-                                                                                        <td>
-                                                                                            <div class="btn-group" role="group" aria-label="Basic example">
-                                                                                                <!--  
-                                                                                                <a href="{{ route('paciente.ficha.basico',$id_paciente) }}" class="btn btn-icons btn-inverse-secondary"><i class="fa fa-eye"></i></a>
-                                                                                                -->
-                                                                                                <a class="btn btn-icons btn-inverse-secondary"><i class="fa fa-file"></i></a>
-                                                                                                <!-- <a class="btn btn-icons btn-inverse-secondary"><i class="fa fa-at"></i></a>  -->
-                                                                                                <a class="btn btn-icons btn-inverse-secondary" title="Eliminar" onclick="fun_pregunta_tratamiento({{$tratamiento->id_tratamiento}}, 'tr_')"><i class="fa fa-times"></i></a>
-                                                                                            </div>
-                                                                                        </td>
-                                                                                        <td>{{ $tratamiento->fecha_creado }}</td>
-                                                                                        <td>{{ $tratamiento->nombre_tratamiento }}</td>
-                                                                                        <td>{{ $tratamiento->name }}</td>
+            <tbody class="">
+                    @forelse ($tratamientos as $tratamiento)
+                    <tr id="tr_{{$tratamiento->id_tratamiento}}">
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <!--
+                                <a href="{{ route('paciente.ficha.basico',$id_paciente) }}" class="btn btn-icons btn-inverse-secondary"><i class="fa fa-eye"></i></a>
+                                -->
+                                <a class="btn btn-icons btn-inverse-secondary"><i class="fa fa-file"></i></a>
+                                <!-- <a class="btn btn-icons btn-inverse-secondary"><i class="fa fa-at"></i></a>  -->
+                                <a class="btn btn-icons btn-inverse-secondary" title="Eliminar" onclick="fun_pregunta_tratamiento({{$tratamiento->id_tratamiento}}, 'tr_')"><i class="fa fa-times"></i></a>
+                            </div>
+                        </td>
+                        <td>{{ $tratamiento->fecha_creado }}</td>
+                        <td>{{ $tratamiento->nombre_tratamiento }}</td>
+                        <td>{{ $tratamiento->name }}</td>
 
-                                                                                    </tr>
+                    </tr>
 
-                                                                                    @empty
-                                                                                <p>No Cuenta con Tratamientos este paciente</p>
-                                                                                @endforelse
+                    @empty
+                <p>No Cuenta con Tratamientos este paciente</p>
+                @endforelse
 
 
-                                                                                </tbody>
-                                                                        </table>
-                                                                        </div>
+                </tbody>
+        </table>
+        </div>
 
-                                                                        </div>
-                                                                        </div>
-                                                                        </div>
-                                                                        @endsection
-                                                                        @push('scripts')
-                                                                        <script src="{{asset('js/tratamientos.js')}}"></script>
-                                                                        @endpush
+        </div>
+        </div>
+        </div>
+        @endsection
+        @push('scripts')
+        <script src="{{asset('js/tratamientos.js')}}"></script>
+        @endpush
