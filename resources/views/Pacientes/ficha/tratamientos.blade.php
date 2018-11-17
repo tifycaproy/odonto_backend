@@ -2,14 +2,14 @@
 
 @section('content-ficha')
 
-<div class="col-12">
+<div class="col-12" id="app">
     <div class="card">
         <div class="card-body ">
 
             <div class="d-flex justify-content-between align-items-center">
                 <h4>Historial de Tratamientos</h4>
                 <!--
-                <a href="{{ route('paciente.ficha.create-tratamientos',$id_paciente) }}" class="btn btn-icons btn-inverse-primary ">
+                    <a href="{{ route('paciente.ficha.create-tratamientos',$id_paciente) }}" class="btn btn-icons btn-inverse-primary ">
                 -->
                 <a class="btn btn-icons btn-inverse-primary" onclick="fun_mostrar_ocultar('div_tratamiento','i_bnt_tr')">
                     <i id="i_bnt_tr" class="fa fa-plus"></i>
